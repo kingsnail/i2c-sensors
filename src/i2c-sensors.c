@@ -8,17 +8,9 @@
 #include "mpu6500.h"
 
 #include "timer.h"
+#include "control.h"
 
 void* sensor_thread_function(void* arg) {
-    int thread_id = *((int*)arg);
-    for (int i = 0; i < 5; i++) {
-        printf("Thread %d: iteration %d\n", thread_id, i);
-        sleep(1);  // simulate some work
-    }
-    return NULL;
-}
-
-void* control_thread_function(void* arg) {
     int thread_id = *((int*)arg);
     for (int i = 0; i < 5; i++) {
         printf("Thread %d: iteration %d\n", thread_id, i);
