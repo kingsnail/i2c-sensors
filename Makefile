@@ -1,5 +1,5 @@
 # Compiler and flags
-CC := gcc
+CC ?= $(TARGET_CC)
 CFLAGS := -Wall -Wextra -Iinc
 
 # Directories
