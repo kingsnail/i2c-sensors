@@ -17,20 +17,20 @@ void initCompass( void ) {
 	uint8_t chipidC = ReadRegister(HMC5883L_ADDR, HMC5883L_REG_IR_C);
 	/printf("HMC5883L ID=%2x%2x%2x\r\n", chipidA, chipidB, chipidC);
 
-	WriteRegister(HMC5883L_ADDR,
+	writeRegister(HMC5883L_ADDR,
 			       HMC5883L_REG_MR,
 	 			   HMC5883L_MR_HS_OFF | HMC5883L_MR_MODE_SINGLE_M
 	             );
 
-	uint8_t mode = ReadRegister(HMC5883L_ADDR, HMC5883L_REG_MR);
+	uint8_t mode = readRegister(HMC5883L_ADDR, HMC5883L_REG_MR);
 	printf("Mode = %2x\r\n", mode);
 
-	WriteRegister(HMC5883L_ADDR,
+	writeRegister(HMC5883L_ADDR,
 	 		       HMC5883L_REG_MR,
 	 			   HMC5883L_MR_HS_OFF | HMC5883L_MR_MODE_CONT_M
                  );
 
-	mode = ReadRegister(HMC5883L_ADDR, HMC5883L_REG_MR);
+	mode = readRegister(HMC5883L_ADDR, HMC5883L_REG_MR);
 	printf("Mode = %2x\r\n", mode);
 
 }
