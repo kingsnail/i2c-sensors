@@ -57,9 +57,9 @@ int main() {
         return 1;
     }
 
-    pthread_join(timer_thread);
-    pthread_join(sensor_thread);
-    pthread_join(control_thread);
+    pthread_join(timer_thread, NULL);
+    pthread_join(sensor_thread, NULL);
+    pthread_join(control_thread, NULL);
     
     printf("All threads completed.\n");
     return 0;
