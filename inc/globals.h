@@ -28,17 +28,17 @@ extern volatile int frameCounter;
 extern volatile int initDone;
 extern volatile int calibDone;
 
-extern volatile int16_t  compX;
-extern volatile int16_t  compY;
-extern volatile int16_t  compZ;
+//extern volatile int16_t  compX;
+//extern volatile int16_t  compY;
+//extern volatile int16_t  compZ;
 
-extern volatile int16_t accX;
-extern volatile int16_t accY;
-extern volatile int16_t accZ;
+//extern volatile int16_t accX;
+//extern volatile int16_t accY;
+//extern volatile int16_t accZ;
 
-extern volatile int16_t  gyroX;
-extern volatile int16_t  gyroY;
-extern volatile int16_t  gyroZ;
+//extern volatile int16_t  gyroX;
+//extern volatile int16_t  gyroY;
+//extern volatile int16_t  gyroZ;
 
 extern volatile int     offsX;
 extern volatile int     offsY;
