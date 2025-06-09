@@ -25,7 +25,6 @@
 extern volatile int systemState;
 
 extern volatile int frameCounter;
-extern volatile int newFrame;
 extern volatile int initDone;
 extern volatile int calibDone;
 
