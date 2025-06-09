@@ -4,8 +4,28 @@
 #include <unistd.h>
 
 #include "globals.h"
+#include "hmc5883.h"
+#include "mpu6500.h"
 
-void* thread_function(void* arg) {
+void* timer_thread_function(void* arg) {
+    int thread_id = *((int*)arg);
+    for (int i = 0; i < 5; i++) {
+        printf("Thread %d: iteration %d\n", thread_id, i);
+        sleep(1);  // simulate some work
+    }
+    return NULL;
+}
+
+void* sensor_thread_function(void* arg) {
+    int thread_id = *((int*)arg);
+    for (int i = 0; i < 5; i++) {
+        printf("Thread %d: iteration %d\n", thread_id, i);
+        sleep(1);  // simulate some work
+    }
+    return NULL;
+}
+
+void* control_thread_function(void* arg) {
     int thread_id = *((int*)arg);
     for (int i = 0; i < 5; i++) {
         printf("Thread %d: iteration %d\n", thread_id, i);
@@ -15,22 +35,32 @@ void* thread_function(void* arg) {
 }
 
 int main() {
-    const int NUM_THREADS = 4;
-    pthread_t threads[NUM_THREADS];
-    int thread_ids[NUM_THREADS];
+    pthread_t timer_thread;
+    int       timer_thread_id;
+    pthread_t sensor_thread;
+    int       sensor_thread_id;
+    pthread_t control_thread;
+    int       control_thread_id;
 
-    for (int i = 0; i < NUM_THREADS; i++) {
-        thread_ids[i] = i;
-        if (pthread_create(&threads[i], NULL, thread_function, &thread_ids[i]) != 0) {
-            perror("Failed to create thread");
-            return 1;
-        }
+    if (pthread_create(&timer_thread, NULL, timer_thread_function, &timer_thread_id) != 0) {
+        perror("Failed to create timer thread");
+        return 1;
     }
 
-    for (int i = 0; i < NUM_THREADS; i++) {
-        pthread_join(threads[i], NULL);
+    if (pthread_create(&sensor_thread, NULL, sensor_thread_function, &sensor_thread_id) != 0) {
+        perror("Failed to create sensor thread");
+        return 1;
     }
 
+    if (pthread_create(&control_thread, NULL, control_thread_function, &control_thread_id) != 0) {
+        perror("Failed to create sensor thread");
+        return 1;
+    }
+
+    pthread_join(timer_thread);
+    pthread_join(sensor_thread);
+    pthread_join(control_thread);
+    
     printf("All threads completed.\n");
     return 0;
 }
