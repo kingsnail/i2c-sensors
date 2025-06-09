@@ -8,6 +8,6 @@
 #ifndef APPLICATION_USER_CORE_INC_TIMER_H_
 #define APPLICATION_USER_CORE_INC_TIMER_H_
 
-void timer_thread_function( void *argument );
+void* timer_thread_function( void *argument );
 
 #endif /* APPLICATION_USER_CORE_INC_TIMER_H_ */
