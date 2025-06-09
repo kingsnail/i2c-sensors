@@ -17,15 +17,3 @@ void* timer_thread_function(void* arg) {
     }
     return NULL;
 }
-
-int main() {
-    pthread_t thread;
-
-    if (pthread_create(&thread, NULL, fixed_rate_thread, NULL) != 0) {
-        perror("Thread creation failed");
-        return 1;
-    }
-
-    pthread_join(thread, NULL);
-    return 0;
-}
