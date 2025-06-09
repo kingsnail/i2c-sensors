@@ -1,0 +1,42 @@
+
+volatile int systemState  = 0;
+volatile int frameCounter = 0;
+volatile int newFrame     = 1;
+volatile int initDone     = 0;
+volatile int calibDone    = 0;
+
+volatile int16_t accX     = 0;
+volatile int16_t accY     = 0;
+volatile int16_t accZ     = 0;
+
+volatile int16_t  gyroX   = 0;
+volatile int16_t  gyroY   = 0;
+volatile int16_t  gyroZ   = 0;
+
+volatile int      offsX   = 0;
+volatile int      offsY   = 0;
+volatile int      offsZ   = 0;
+
+volatile int16_t  compX   = 0;
+volatile int16_t  compY   = 0;
+volatile int16_t  compZ   = 0;
+
+volatile float    sCompX  = 0.0;
+volatile float    sCompY  = 0.0;
+volatile float    sCompZ  = 0.0;
+
+volatile float    sAccX   = 0.0;
+volatile float    sAccY   = 0.0;
+volatile float    sAccZ   = 0.0;
+
+volatile float    sGyroX  = 0.0;
+volatile float    sGyroY  = 0.0;
+volatile float    sGyroZ  = 0.0;
+
+volatile float    pitch   = 0.0;
+volatile float    roll    = 0.0;
+volatile float    yaw     = 0.0;
+
+volatile float    pitchOffset = 0.0f;
+volatile float    rollOffset  = 0.0f;
+volatile float    yawOffset   = 0.0f;
