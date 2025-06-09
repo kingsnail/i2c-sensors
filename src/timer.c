@@ -22,11 +22,3 @@ void* timer_thread_function(void* arg) {
     }
     return NULL;
 }
-
-
-
-    while ( 1 ) {
-
-    	minorCount = 0;
-    	osDelay(0);
-    }
