@@ -14,6 +14,25 @@ void* sensor_thread_function(void* arg) {
         if ( frameCounter != lastFrameCounter ) {
             lastFrameCounter = frameCounter;
             printf("Sense\n");
+            switch( systemState ) {
+                
+                case SYS_STATE_READY :
+                    systemState = SYS_STATE_INIT;
+                    break;
+                
+                case SYS_STATE_INIT :
+                    // Do init tasks
+                    initDone = 1; 
+                    break;
+                
+                case SYS_STATE_CALIB :
+                    // read sensors for calibration
+                    break;
+
+                case SYS_STATE_RUN :
+                    //read sensors for operation
+                    break;
+            }
         }
     }
     return NULL;
