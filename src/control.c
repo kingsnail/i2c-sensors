@@ -11,9 +11,10 @@ void* control_thread_function(void* arg) {
     int lastFrameCounter = 0;
   
     while(1) {
-      if ( frameCounter != lastFrameCounter ) {
-          lastFrameCounter = frameCounter;
-          printf("Tock\n");
-      }
-    return NULL;
+        if ( frameCounter != lastFrameCounter ) {
+            lastFrameCounter = frameCounter;
+            printf("Tock\n");
+        }
+        return NULL;
+    }
 }
