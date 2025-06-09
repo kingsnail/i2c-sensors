@@ -1,6 +1,6 @@
 # Compiler and flags
 CC ?= $(TARGET_CC)
-CFLAGS := -Wall -Wextra -Iinc
+CFLAGS += -Wall -Wextra -Iinc
 
 # Directories
 SRC_DIR := src
