@@ -7,14 +7,7 @@
 #include "hmc5883.h"
 #include "mpu6500.h"
 
-void* timer_thread_function(void* arg) {
-    int thread_id = *((int*)arg);
-    for (int i = 0; i < 5; i++) {
-        printf("Thread %d: iteration %d\n", thread_id, i);
-        sleep(1);  // simulate some work
-    }
-    return NULL;
-}
+#include "timer.h"
 
 void* sensor_thread_function(void* arg) {
     int thread_id = *((int*)arg);
