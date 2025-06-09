@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include "globals.h"
+#include "i2c-utils.h"
 
 #define INTERVAL_MS 500
 
