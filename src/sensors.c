@@ -12,9 +12,9 @@
 
 void initCompass( void ) {
     
-	uint8_t chipidA = ReadRegister(HMC5883L_ADDR, HMC5883L_REG_IR_A);
-	uint8_t chipidB = ReadRegister(HMC5883L_ADDR, HMC5883L_REG_IR_B);
-	uint8_t chipidC = ReadRegister(HMC5883L_ADDR, HMC5883L_REG_IR_C);
+	uint8_t chipidA = readRegister(HMC5883L_ADDR, HMC5883L_REG_IR_A);
+	uint8_t chipidB = readRegister(HMC5883L_ADDR, HMC5883L_REG_IR_B);
+	uint8_t chipidC = readRegister(HMC5883L_ADDR, HMC5883L_REG_IR_C);
 	printf("HMC5883L ID=%2x%2x%2x\r\n", chipidA, chipidB, chipidC);
 
 	writeRegister(HMC5883L_ADDR,
