@@ -15,6 +15,6 @@ void* control_thread_function(void* arg) {
             lastFrameCounter = frameCounter;
             printf("Tock\n");
         }
-        return NULL;
     }
+    return NULL;
 }
