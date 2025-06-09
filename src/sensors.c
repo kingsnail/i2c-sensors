@@ -6,6 +6,7 @@
 
 #include "globals.h"
 #include "i2c-utils.h"
+#include "hmc5883.h"
 
 #define INTERVAL_MS 500
 
