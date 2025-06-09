@@ -12,6 +12,6 @@
 
 uint8_t readRegister( uint8_t addr, uint8_t reg );
 
-uint8_t writeRegister( uint8_t addr, uint8_t reg, uint8_t val )
+uint8_t writeRegister( uint8_t addr, uint8_t reg, uint8_t val );
 
 #endif /* APPLICATION_USER_CORE_INC_I2C_UTILS_H_ */
