@@ -9,7 +9,7 @@ OBJ_DIR := obj
 BIN_DIR := bin
 
 # Output binary name
-TARGET := $(BIN_DIR)/myapp
+TARGET := $(BIN_DIR)/i2c-sensors
 
 # Source and object files
 SRCS := $(wildcard $(SRC_DIR)/*.c)
