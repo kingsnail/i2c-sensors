@@ -1,7 +1,6 @@
 
 volatile int systemState  = 0;
 volatile int frameCounter = 0;
-volatile int newFrame     = 1;
 volatile int initDone     = 0;
 volatile int calibDone    = 0;
 
