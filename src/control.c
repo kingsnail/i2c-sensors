@@ -8,7 +8,7 @@
 
 void* control_thread_function(void* arg) {
 
-    int last_FrameCounter = 0;
+    int lastFrameCounter = 0;
   
     while(1) {
       if ( frameCounter != lastFrameCounter ) {
