@@ -14,7 +14,7 @@ void* control_thread_function(void* arg) {
     while(1) {
         if ( frameCounter != lastFrameCounter ) {
             lastFrameCounter = frameCounter;
-            printf("Tock\n");
+            printf("Tock %i\n", systemState);
             switch ( systemState ) {
 
   			    case SYS_STATE_READY:
