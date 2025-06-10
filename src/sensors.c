@@ -74,7 +74,7 @@ void readCompass( void ) {
     uint8_t dataZLSB = readRegister(HMC5883L_ADDR, HMC5883L_REG_Z_LSB);
     compX            = (int16_t)(((uint16_t)dataZMSB << 8) | (uint16_t)dataZLSB);
 	
-    printf("Compass = %2x%2x, %2x%2x, %2x%2x\n", dataXMSB, dataXLSB, dataYMSB, dataYLSB, dataZMSB, dataZLSB );
+    //printf("Compass = %2x%2x, %2x%2x, %2x%2x\n", dataXMSB, dataXLSB, dataYMSB, dataYLSB, dataZMSB, dataZLSB );
 
 }
 
@@ -103,7 +103,7 @@ void readIMU( void ) {
     uint8_t gyroZLSB = readRegister(MPU6500_ADDR, MPU6500_R_GYRO_Z_OUT_L );
     gyroX            = (int16_t)(((uint16_t)gyroZMSB << 8) | (uint16_t)gyroZLSB);
 
-    printf("ACC:%04x, %04x, %04x GYRO:%04x, %04x, %04x\n", accX, accY, accZ, gyroX, gyroY, gyroZ );
+    //printf("ACC:%04x, %04x, %04x GYRO:%04x, %04x, %04x\n", accX, accY, accZ, gyroX, gyroY, gyroZ );
 
     // Scale the raw data values to their float equivalents
     sAccX  = accX  * 1.0/256.0;
