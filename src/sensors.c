@@ -77,7 +77,16 @@ void readIMU( void ) {
     uint8_t dataXMSB = readRegister(MPU6500_ADDR, MPU6500_R_ACCEL_XOUT_H );
     uint8_t dataXLSB = readRegister(MPU6500_ADDR, MPU6500_R_ACCEL_XOUT_L );
     accX             = (int16_t)(((uint16_t)dataXMSB << 8) | (uint16_t)dataXLSB);
-    printf("Accel = %04x \n", accX);
+
+    uint8_t dataYMSB = readRegister(MPU6500_ADDR, MPU6500_R_ACCEL_XOUT_H );
+    uint8_t dataYLSB = readRegister(MPU6500_ADDR, MPU6500_R_ACCEL_XOUT_L );
+    accY             = (int16_t)(((uint16_t)dataYMSB << 8) | (uint16_t)dataYLSB);
+    
+    uint8_t dataZMSB = readRegister(MPU6500_ADDR, MPU6500_R_ACCEL_XOUT_H );
+    uint8_t dataZLSB = readRegister(MPU6500_ADDR, MPU6500_R_ACCEL_XOUT_L );
+    accZ             = (int16_t)(((uint16_t)dataZMSB << 8) | (uint16_t)dataZLSB);
+
+    printf("Accel = %04x, %04x, %04x \n", accX, accY, accZ );
 }
 
 void* sensor_thread_function(void* arg) {
