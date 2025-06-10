@@ -1,4 +1,4 @@
-#include <stdint>
+#include <stdint.h>
 
 volatile int systemState  = 0;
 volatile int frameCounter = 0;
