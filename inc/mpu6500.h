@@ -13,14 +13,17 @@
 /*
  * Register Definitions
  */
+#define MPU6500_R_GYRO_CONFIG     (0x1B)
+#define MPU6500_R_ACCEL_CONFIG    (0x1C)
 
 #define MPU6500_R_INT_PIN_CFG     (0x37)
-#define MPU6500_R_ACCEL_X_OUT_H   (0x3B)
-#define MPU6500_R_ACCEL_X_OUT_L   (0x3C)
-#define MPU6500_R_ACCEL_Y_OUT_H   (0x3D)
-#define MPU6500_R_ACCEL_Y_OUT_L   (0x3E)
-#define MPU6500_R_ACCEL_Z_OUT_H   (0x3F)
-#define MPU6500_R_ACCEL_Z_OUT_L   (0x40)
+
+#define MPU6500_R_ACCEL_XOUT_H    (0x3B)
+#define MPU6500_R_ACCEL_XOUT_L    (0x3C)
+#define MPU6500_R_ACCEL_YOUT_H    (0x3D)
+#define MPU6500_R_ACCEL_YOUT_L    (0x3E)
+#define MPU6500_R_ACCEL_ZOUT_H    (0x3F)
+#define MPU6500_R_ACCEL_ZOUT_L    (0x40)
 #define MPU6500_R_TEMP_OUT_H      (0x41)
 #define MPU6500_R_TEMP_OUT_L      (0x42)
 #define MPU6500_R_GYRO_X_OUT_H    (0x43)
