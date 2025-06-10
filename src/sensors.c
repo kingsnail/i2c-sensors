@@ -18,17 +18,17 @@ void initCompass( void ) {
 	printf("HMC5883L ID=%2x%2x%2x\r\n", chipidA, chipidB, chipidC);
 
 	writeRegister(HMC5883L_ADDR,
-			       HMC5883L_REG_MR,
-	 			   HMC5883L_MR_HS_OFF | HMC5883L_MR_MODE_SINGLE_M
+		      HMC5883L_REG_MR,
+	 	      HMC5883L_MR_HS_OFF | HMC5883L_MR_MODE_SINGLE_M
 	             );
 
 	uint8_t mode = readRegister(HMC5883L_ADDR, HMC5883L_REG_MR);
 	printf("Mode = %2x\r\n", mode);
 
 	writeRegister(HMC5883L_ADDR,
-	 		       HMC5883L_REG_MR,
-	 			   HMC5883L_MR_HS_OFF | HMC5883L_MR_MODE_CONT_M
-                 );
+	 	      HMC5883L_REG_MR,
+	 	      HMC5883L_MR_HS_OFF | HMC5883L_MR_MODE_CONT_M
+                     );
 
 	mode = readRegister(HMC5883L_ADDR, HMC5883L_REG_MR);
 	printf("Mode = %2x\r\n", mode);
@@ -40,6 +40,13 @@ void initIMU( void ) {
 }
 
 void initDisplay( void ) {
+
+}
+
+void readCompass( void ) {
+    uint8_t dataXMSB = readRegister(HMC5883L_ADDR, HMC5883L_REG_MR);
+    uint8_t dataXLSB = readRegister(HMC5883L_ADDR, HMC5883L_REG_MR);
+    printf("Mode = %2x\r\n", mode);
 
 }
 
@@ -68,10 +75,12 @@ void* sensor_thread_function(void* arg) {
                 
                 case SYS_STATE_CALIB :
                     // read sensors for calibration
+		    readCompass()
                     break;
 
                 case SYS_STATE_RUN :
                     //read sensors for operation
+		    readCompass();
                     break;
             }
         }
