@@ -7,6 +7,7 @@
 #include "globals.h"
 #include "i2c-utils.h"
 #include "hmc5883.h"
+#include "mpu6500.h"
 
 #define INTERVAL_MS 500
 
