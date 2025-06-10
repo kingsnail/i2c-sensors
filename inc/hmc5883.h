@@ -5,24 +5,24 @@
 #define HMC5883L_ADDR      (0x1e << 1)
 
 // Register Definitions
-#define HMC5883L_REG_CRA   (0x0000)  // Configuration Register A
-#define HMC5883L_REG_CRB   (0x0001)  // Configuration Register B
-#define HMC5883L_REG_MR    (0x0002)  // Mode Register
+#define HMC5883L_REG_CRA   (0x00)  // Configuration Register A
+#define HMC5883L_REG_CRB   (0x01)  // Configuration Register B
+#define HMC5883L_REG_MR    (0x02)  // Mode Register
 
-#define HMC5883L_REG_X_MSB (0x0003)
-#define HMC5883L_REG_X_LSB (0x0004)
+#define HMC5883L_REG_X_MSB (0x03)
+#define HMC5883L_REG_X_LSB (0x04)
 
-#define HMC5883L_REG_Z_MSB (0x0005)
-#define HMC5883L_REG_Z_LSB (0x0006)
+#define HMC5883L_REG_Z_MSB (0x05)
+#define HMC5883L_REG_Z_LSB (0x06)
 
-#define HMC5883L_REG_Y_MSB (0x0007)
-#define HMC5883L_REG_Y_LSB (0x0008)
+#define HMC5883L_REG_Y_MSB (0x07)
+#define HMC5883L_REG_Y_LSB (0x08)
 
-#define HMC5883L_REG_SR    (0x0009)  // Status Register
+#define HMC5883L_REG_SR    (0x09)  // Status Register
 
-#define HMC5883L_REG_IR_A  (0x000A)  // Identification Register A
-#define HMC5883L_REG_IR_B  (0x000B)  // Identification Register B
-#define HMC5883L_REG_IR_C  (0x000C)  // Identification Register C
+#define HMC5883L_REG_IR_A  (0x0A)  // Identification Register A
+#define HMC5883L_REG_IR_B  (0x0B)  // Identification Register B
+#define HMC5883L_REG_IR_C  (0x0C)  // Identification Register C
 
 // Configuration Register A
 #define HMC5883L_CRA_MA_SAMPLES_1  (0x00)
