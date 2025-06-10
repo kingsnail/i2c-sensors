@@ -87,7 +87,7 @@ void readIMU( void ) {
     accY             = (int16_t)(((uint16_t)dataYMSB << 8) | (uint16_t)dataYLSB);
     
     uint8_t dataZMSB = readRegister(MPU6500_ADDR, MPU6500_R_ACCEL_ZOUT_H );
-    uint8_t dataZLSB = readRegister(MPU6500_ADDR, MPU6500_R_ACCEL_zOUT_L );
+    uint8_t dataZLSB = readRegister(MPU6500_ADDR, MPU6500_R_ACCEL_ZOUT_L );
     accZ             = (int16_t)(((uint16_t)dataZMSB << 8) | (uint16_t)dataZLSB);
 	
     uint8_t gyroXMSB = readRegister(MPU6500_ADDR, MPU6500_R_GYRO_X_OUT_H );
