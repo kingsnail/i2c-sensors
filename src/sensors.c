@@ -56,7 +56,7 @@ void readCompass( void ) {
     uint8_t dataZLSB = readRegister(HMC5883L_ADDR, HMC5883L_REG_Z_LSB);
     compX            = (int16_t)(((uint16_t)dataZMSB << 8) | (uint16_t)dataZLSB);
 	
-    printf("Compass = %2x%2x, %2x%2x, %2x%2x\n", dataXMSB, dataXLSB, dataYMSB, dataYLSB,dataXZSB, dataZLSB );
+    printf("Compass = %2x%2x, %2x%2x, %2x%2x\n", dataXMSB, dataXLSB, dataYMSB, dataYLSB, dataZMSB, dataZLSB );
 
 }
 
