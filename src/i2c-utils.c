@@ -20,16 +20,24 @@ uint8_t   buff[8];
 uint16_t  temp_reading;
 uint8_t   looper;
 
+/*****************************************************
+ * openI2C - opens the I2C channel file device.      *
+ *****************************************************/
 int openI2C( void ) {
     fd = open(I2C_DEVICE, O_RDWR);
     if (fd < 0) {
         printf("Could not open I2C device...");
         return 1;
     }
+    printf("I2C device open.\r\n");
     device_open = 1;
     return 0;
 }
 
+/*****************************************************
+ * readRegister - reads a single byte value from the *
+ * specified address and register combination        *
+ *****************************************************/
 uint8_t readRegister( uint8_t addr, uint8_t reg ){
     if ( device_open != 1 ) {
         openI2C();
@@ -53,6 +61,10 @@ uint8_t readRegister( uint8_t addr, uint8_t reg ){
     }
 }
 
+/******************************************************
+ * writeRegister - writess a single byte value to the *
+ * specified address and register combination         *
+ ******************************************************/
 uint8_t writeRegister( uint8_t addr, uint8_t reg, uint8_t val ){
     if ( device_open != 1 ) {
         openI2C();
