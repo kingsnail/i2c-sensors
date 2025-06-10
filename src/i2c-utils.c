@@ -68,6 +68,7 @@ uint8_t readRegister(uint8_t addr, uint8_t reg) {
  * specified address and register combination         *
  ******************************************************/
 uint8_t writeRegister( uint8_t addr, uint8_t reg, uint8_t val ){
+    printf("writeRegister(%02x, %02x, %02x)\n", addr, reg, val);
     if ( device_open != 1 ) {
         openI2C();
     }
@@ -82,7 +83,6 @@ uint8_t writeRegister( uint8_t addr, uint8_t reg, uint8_t val ){
         printf("Could not write the pointer register and data %02x, %02x, %02x.\r\n", addr, reg, val);
         return( 0 );
     }
-    printf("writeRegister(%02x, %02x, %02x)\n", addr, reg, val);
     return( 1 );
 }
      
