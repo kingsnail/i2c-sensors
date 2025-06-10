@@ -6,7 +6,7 @@
 #include "globals.h"
 #include "MadgwickAHRS.h"
 
-#define INTERVAL_MS 500
+#define INTERVAL_MS 200
 
 int calibrateCount = 0;
 
