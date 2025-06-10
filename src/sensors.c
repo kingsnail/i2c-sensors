@@ -36,7 +36,19 @@ void initCompass( void ) {
 }
 
 void initIMU( void ) {
-
+    writeRegister(MPU6500_ADDR,
+	 	  MPU6500_R_PWR_MGMT_1,
+	 	  0x00
+                 );
+    writeRegister(MPU6500_ADDR,
+	 	  MPU6500_R_GYRO_CONFIG,
+	 	  0x00
+                 );
+    writeRegister(MPU6500_ADDR,
+	 	  MPU6500_R_ACCEL_CONFIG,
+	 	  0x00
+                 );
+	
 }
 
 void initDisplay( void ) {
@@ -60,6 +72,13 @@ void readCompass( void ) {
 
 }
 
+void readIMU( void ) {
+    uint8_t dataXMSB = readRegister(MPU6500_ADDR, MPU6500_R_ACCEL_XOUT_H);
+    uint8_t dataXLSB = readRegister(MPU6500_ADDR, MPU6500_R_ACCEL_XOUT_L);
+    accelX           = (int16_t)(((uint16_t)dataXMSB << 8) | (uint16_t)dataXLSB);
+    printf("Accel = %04x \n", accelX);
+}
+
 void* sensor_thread_function(void* arg) {
 
     int lastFrameCounter = 0;
@@ -76,7 +95,7 @@ void* sensor_thread_function(void* arg) {
                 
                 case SYS_STATE_INIT :
 		    if  ( initDone != 1 ) {
-                        initCompass();
+                        //initCompass();
                         initIMU();
                         initDisplay();
                         initDone = 1; 
@@ -85,13 +104,15 @@ void* sensor_thread_function(void* arg) {
                 
                 case SYS_STATE_CALIB :
                     // read sensors for calibration
-		    readCompass();
+		    //readCompass();
+		    readIMU();
                     break;
 
                 case SYS_STATE_RUN :
                     //read sensors for operation
-		    readCompass();
-                    break;
+		    //readCompass();
+                    readIMU();
+		    break;
             }
         }
     }
