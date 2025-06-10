@@ -9,6 +9,8 @@
 #ifndef APPLICATION_USER_CORE_INC_GLOBALS_H_
 #define APPLICATION_USER_CORE_INC_GLOBALS_H_
 
+#include <stdint.h>
+
 #define SYS_STATE_STOP    ( 0 )
 #define SYS_STATE_READY   ( 1 )
 #define SYS_STATE_INIT    ( 2 )
@@ -28,9 +30,9 @@ extern volatile int frameCounter;
 extern volatile int initDone;
 extern volatile int calibDone;
 
-//extern volatile int16_t  compX;
-//extern volatile int16_t  compY;
-//extern volatile int16_t  compZ;
+extern volatile int16_t  compX;
+extern volatile int16_t  compY;
+extern volatile int16_t  compZ;
 
 //extern volatile int16_t accX;
 //extern volatile int16_t accY;
