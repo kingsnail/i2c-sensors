@@ -48,7 +48,7 @@ uint8_t readRegister( uint8_t addr, uint8_t reg ){
     }
     // Write the register number
     buff[0] = reg;
-    if(write(fd,buff,1) != 1) {
+    if(write(fd, buff,1) != 1) {
         printf("Could not write the pointer register %i, %i.\r\n", addr, reg);
         return( 0 );
     }
@@ -57,6 +57,7 @@ uint8_t readRegister( uint8_t addr, uint8_t reg ){
         return ( 0 );
     }
     else {
+        printf("readRegister(%i, %i) = %i\n", addr, reg, buff[0]);
         return( buff[0] );
     }
 }
@@ -80,6 +81,7 @@ uint8_t writeRegister( uint8_t addr, uint8_t reg, uint8_t val ){
         printf("Could not write the pointer register and data %i, %i, %i.\r\n", addr, reg, val);
         return( 0 );
     }
+    printf("writeRegister(%i, %i, %i)\n", addr, reg, val);
     return( 1 );
 }
      
