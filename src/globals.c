@@ -1,3 +1,4 @@
+#include <stdint>
 
 volatile int systemState  = 0;
 volatile int frameCounter = 0;
@@ -16,9 +17,9 @@ volatile int      offsX   = 0;
 volatile int      offsY   = 0;
 volatile int      offsZ   = 0;
 
-//volatile int16_t  compX   = 0;
-//volatile int16_t  compY   = 0;
-//volatile int16_t  compZ   = 0;
+volatile int16_t  compX   = 0;
+volatile int16_t  compY   = 0;
+volatile int16_t  compZ   = 0;
 
 volatile float    sCompX  = 0.0;
 volatile float    sCompY  = 0.0;
