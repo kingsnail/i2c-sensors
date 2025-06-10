@@ -75,8 +75,8 @@ void readCompass( void ) {
 void readIMU( void ) {
     uint8_t dataXMSB = readRegister(MPU6500_ADDR, MPU6500_R_ACCEL_XOUT_H);
     uint8_t dataXLSB = readRegister(MPU6500_ADDR, MPU6500_R_ACCEL_XOUT_L);
-    accelX           = (int16_t)(((uint16_t)dataXMSB << 8) | (uint16_t)dataXLSB);
-    printf("Accel = %04x \n", accelX);
+    accX             = (int16_t)(((uint16_t)dataXMSB << 8) | (uint16_t)dataXLSB);
+    printf("Accel = %04x \n", accX);
 }
 
 void* sensor_thread_function(void* arg) {
