@@ -78,15 +78,28 @@ void readIMU( void ) {
     uint8_t dataXLSB = readRegister(MPU6500_ADDR, MPU6500_R_ACCEL_XOUT_L );
     accX             = (int16_t)(((uint16_t)dataXMSB << 8) | (uint16_t)dataXLSB);
 
-    uint8_t dataYMSB = readRegister(MPU6500_ADDR, MPU6500_R_ACCEL_XOUT_H );
-    uint8_t dataYLSB = readRegister(MPU6500_ADDR, MPU6500_R_ACCEL_XOUT_L );
+    uint8_t dataYMSB = readRegister(MPU6500_ADDR, MPU6500_R_ACCEL_YOUT_H );
+    uint8_t dataYLSB = readRegister(MPU6500_ADDR, MPU6500_R_ACCEL_YOUT_L );
     accY             = (int16_t)(((uint16_t)dataYMSB << 8) | (uint16_t)dataYLSB);
     
-    uint8_t dataZMSB = readRegister(MPU6500_ADDR, MPU6500_R_ACCEL_XOUT_H );
-    uint8_t dataZLSB = readRegister(MPU6500_ADDR, MPU6500_R_ACCEL_XOUT_L );
+    uint8_t dataZMSB = readRegister(MPU6500_ADDR, MPU6500_R_ACCEL_ZOUT_H );
+    uint8_t dataZLSB = readRegister(MPU6500_ADDR, MPU6500_R_ACCEL_zOUT_L );
     accZ             = (int16_t)(((uint16_t)dataZMSB << 8) | (uint16_t)dataZLSB);
+	
+    uint8_t gyroXMSB = readRegister(MPU6500_ADDR, MPU6500_R_GYRO_X_OUT_H );
+    uint8_t gyroXLSB = readRegister(MPU6500_ADDR, MPU6500_R_GYRO_X_OUT_L );
+    gyroX            = (int16_t)(((uint16_t)gyroXMSB << 8) | (uint16_t)gyroXLSB);
 
-    printf("Accel = %04x, %04x, %04x \n", accX, accY, accZ );
+    uint8_t gyroYMSB = readRegister(MPU6500_ADDR, MPU6500_R_GYRO_Y_OUT_H );
+    uint8_t gyroYLSB = readRegister(MPU6500_ADDR, MPU6500_R_GYRO_Y_OUT_L );
+    gyroY            = (int16_t)(((uint16_t)gyroYMSB << 8) | (uint16_t)gyroYLSB);
+
+    uint8_t gyroZMSB = readRegister(MPU6500_ADDR, MPU6500_R_GYRO_Z_OUT_H );
+    uint8_t gyroZLSB = readRegister(MPU6500_ADDR, MPU6500_R_GYRO_Z_OUT_L );
+    gyroX            = (int16_t)(((uint16_t)gyroZMSB << 8) | (uint16_t)gyroZLSB);
+
+    printf("ACC:%04x, %04x, %04x GYRO:%04x, %04x, %04x\n", accX, accY, accZ, gyroX, gyroY, gyroZ );
+	
 }
 
 void* sensor_thread_function(void* arg) {
