@@ -8,7 +8,7 @@
 #ifndef APPLICATION_USER_CORE_INC_MPU6500_H_
 #define APPLICATION_USER_CORE_INC_MPU6500_H_
 
-#define MPU6500_ADDR    (0x68 << 1)
+#define MPU6500_ADDR              (0x68)
 
 /*
  * Register Definitions
