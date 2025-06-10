@@ -46,7 +46,7 @@ void processFrame( void ) {
     int p = (int)(pitch * 100);
     int r = (int)(roll * 100);
     int y = (int)(yaw * 100);
-    printf("AHRS: P:%i R:%i Y:%i\r\n", p, r, y);
+    printf("AHRS: M:%i P:%i R:%i Y:%i\r\n", systemState, p, r, y);
 
     executeFilter();
     calculateAngles();
@@ -63,8 +63,8 @@ void* control_thread_function(void* arg) {
     while(1) {
         if ( frameCounter != lastFrameCounter ) {
             lastFrameCounter = frameCounter;
-            printf("Tock %i\n", systemState);
-            switch ( systemState ) {
+
+	    switch ( systemState ) {
 
   		case SYS_STATE_READY:
                        break;
