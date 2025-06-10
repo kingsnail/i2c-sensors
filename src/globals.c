@@ -5,13 +5,13 @@ volatile int frameCounter = 0;
 volatile int initDone     = 0;
 volatile int calibDone    = 0;
 
-//volatile int16_t accX     = 0;
-//volatile int16_t accY     = 0;
-//volatile int16_t accZ     = 0;
+volatile int16_t  accX    = 0;
+volatile int16_t  accY    = 0;
+volatile int16_t  accZ    = 0;
 
-//volatile int16_t  gyroX   = 0;
-//volatile int16_t  gyroY   = 0;
-//volatile int16_t  gyroZ   = 0;
+volatile int16_t  gyroX   = 0;
+volatile int16_t  gyroY   = 0;
+volatile int16_t  gyroZ   = 0;
 
 volatile int      offsX   = 0;
 volatile int      offsY   = 0;
