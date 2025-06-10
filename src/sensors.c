@@ -37,6 +37,10 @@ void initCompass( void ) {
 }
 
 void initIMU( void ) {
+	
+    uint8_t chipId = readRegister(MPU6500_ADDR, MPU6500_R_WHO_AM_I);
+    printf("MPU6500 id = %02x\n", chipId);
+	
     writeRegister(MPU6500_ADDR,
 	 	  MPU6500_R_PWR_MGMT_1,
 	 	  0x00
