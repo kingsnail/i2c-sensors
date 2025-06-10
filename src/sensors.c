@@ -44,9 +44,19 @@ void initDisplay( void ) {
 }
 
 void readCompass( void ) {
-    uint8_t dataXMSB = readRegister(HMC5883L_ADDR, HMC5883L_REG_MR);
-    uint8_t dataXLSB = readRegister(HMC5883L_ADDR, HMC5883L_REG_MR);
-    printf("Mode = %2x\r\n", mode);
+    uint8_t dataXMSB = readRegister(HMC5883L_ADDR, HMC5883L_REG_X_MSB);
+    uint8_t dataXLSB = readRegister(HMC5883L_ADDR, HMC5883L_REG_X_LSB);
+    compX            = (int16_t)(((uint16_t)dataXMSB << 8) | (uint16_t)dataXLSB);
+
+    uint8_t dataYMSB = readRegister(HMC5883L_ADDR, HMC5883L_REG_Y_MSB);
+    uint8_t dataYLSB = readRegister(HMC5883L_ADDR, HMC5883L_REG_Y_LSB);
+    compX            = (int16_t)(((uint16_t)dataYMSB << 8) | (uint16_t)dataYLSB);
+
+    uint8_t dataZMSB = readRegister(HMC5883L_ADDR, HMC5883L_REG_Z_MSB);
+    uint8_t dataZLSB = readRegister(HMC5883L_ADDR, HMC5883L_REG_Z_LSB);
+    compX            = (int16_t)(((uint16_t)dataZMSB << 8) | (uint16_t)dataZLSB);
+	
+    printf("Compass = %2x%2x, %2x%2x, %2x%2x\n", dataXMSB, dataXLSB, dataYMSB, dataYLSB,dataXZSB, dataZLSB,);
 
 }
 
