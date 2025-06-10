@@ -85,7 +85,7 @@ void* sensor_thread_function(void* arg) {
                 
                 case SYS_STATE_CALIB :
                     // read sensors for calibration
-		    readCompass()
+		    readCompass();
                     break;
 
                 case SYS_STATE_RUN :
