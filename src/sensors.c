@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <stdint.h>
+#include <math.h>
 
 #include "globals.h"
 #include "i2c-utils.h"
