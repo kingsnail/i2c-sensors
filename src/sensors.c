@@ -103,7 +103,16 @@ void readIMU( void ) {
     gyroX            = (int16_t)(((uint16_t)gyroZMSB << 8) | (uint16_t)gyroZLSB);
 
     printf("ACC:%04x, %04x, %04x GYRO:%04x, %04x, %04x\n", accX, accY, accZ, gyroX, gyroY, gyroZ );
-	
+
+    // Scale the raw data values to their float equivalents
+    sAccX  = accX  * 1.0/256.0;
+    sAccY  = accY  * 1.0/256.0;
+    sAccZ  = accZ  * 1.0/256.0;
+
+    sGyroX = ((gyroX - offsX) / 131.0f) * M_PI / 180.0f;
+    sGyroY = ((gyroY - offsY) / 131.0f) * M_PI / 180.0f;
+    sGyroZ = ((gyroZ - offsZ) / 131.0f) * M_PI / 180.0f;
+
 }
 
 void* sensor_thread_function(void* arg) {
