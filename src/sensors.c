@@ -58,11 +58,13 @@ void* sensor_thread_function(void* arg) {
                     break;
                 
                 case SYS_STATE_INIT :
-                    initCompass();
-                    initIMU();
-                    initDisplay();
-                    initDone = 1; 
-                    break;
+		    if  ( initDone != 1 ) {
+                        initCompass();
+                        initIMU();
+                        initDisplay();
+                        initDone = 1; 
+		    }
+		    break;
                 
                 case SYS_STATE_CALIB :
                     // read sensors for calibration
