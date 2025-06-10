@@ -38,29 +38,30 @@ int openI2C( void ) {
  * readRegister - reads a single byte value from the *
  * specified address and register combination        *
  *****************************************************/
-uint8_t readRegister( uint8_t addr, uint8_t reg ){
-    if ( device_open != 1 ) {
-        openI2C();
-    }
-    if(ioctl(fd, I2C_SLAVE, addr) < 0) {
-        printf("Could not set I2C device address %i\r\n", addr);
+uint8_t readRegister(uint8_t addr, uint8_t reg) {
+    uint8_t data = 0;
+
+    if (device_open != 1) openI2C();
+
+    if (ioctl(fd, I2C_SLAVE, addr) < 0) {
+        perror("Failed to set I2C address");
         return 0;
     }
-    // Write the register number
-    buff[0] = reg;
-    if(write(fd, buff,1) != 1) {
-        printf("Could not write the pointer register %i, %i.\r\n", addr, reg);
-        return( 0 );
+
+    if (write(fd, &reg, 1) != 1) {
+        perror("Failed to write register address");
+        return 0;
     }
-    if(read(fd, buff, 1) != 1) {
-        printf("Could not read the Device Id %i, %i\r\n", addr, reg);
-        return ( 0 );
+
+    if (read(fd, &data, 1) != 1) {
+        perror("Failed to read register data");
+        return 0;
     }
-    else {
-        printf("readRegister(%i, %i) = %i\n", addr, reg, buff[0]);
-        return( buff[0] );
-    }
+
+    return data;
 }
+
+
 
 /******************************************************
  * writeRegister - writess a single byte value to the *
@@ -71,17 +72,17 @@ uint8_t writeRegister( uint8_t addr, uint8_t reg, uint8_t val ){
         openI2C();
     }
     if(ioctl(fd, I2C_SLAVE, addr) < 0) {
-        printf("Could not set I2C device address %i\r\n", addr);
+        printf("Could not set I2C device address %02x\r\n", addr);
         return 0;
     }
     // Write the register number
     buff[0] = reg;
     buff[1] = val;
-    if(write(fd,buff,2) != 2) {
-        printf("Could not write the pointer register and data %i, %i, %i.\r\n", addr, reg, val);
+    if(write(fd,&buff,2) != 2) {
+        printf("Could not write the pointer register and data %02x, %02x, %02x.\r\n", addr, reg, val);
         return( 0 );
     }
-    printf("writeRegister(%i, %i, %i)\n", addr, reg, val);
+    printf("writeRegister(%02x, %02x, %02x)\n", addr, reg, val);
     return( 1 );
 }
      
