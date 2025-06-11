@@ -49,13 +49,20 @@ void calculateAngles( void ) {
     roll  = rollOffset  + atan2f(( q0 * q1 + q2 * q3) * 2.0f, 1 - 2.0f * (q1 * q1 + q2 * q2));
     pitch = pitchOffset + asinf(( q0 * q2 - q3 * q1) * 2.0f);
     yaw   = yawOffset   + atan2f(( q0 * q3 + q1 * q2) * 2.0f, 1 - 2.0f * (q2 * q2 + q3 * q3));
+
+    if ( roll >= 360.0 ) {
+        roll = roll - 360.0f;
+    }
+    if ( pitch >= 360.0 ) {
+        pitch = pitch - 360.0f;
+    }
+    if ( yaw >= 360.0 ) {
+        yaw = yaw - 360.0f;
+    }
 }
 
 void processFrame( void ) {
-    int p = (int)(pitch * 100);
-    int r = (int)(roll * 100);
-    int y = (int)(yaw * 100);
-    printf("AHRS: M:%i P:%i R:%i Y:%i\r\n", systemState, p, r, y);
+    printf("AHRS: M:%i P:%03f R:%03f Y:%03f\r\n", systemState, pitch, roll, yaw);
 
     executeFilter();
     calculateAngles();
@@ -114,8 +121,8 @@ void* control_thread_function(void* arg) {
 		    systemState = SYS_STATE_ERROR;
 		}
             clock_gettime(CLOCK_MONOTONIC, &end);
-            double elapsed = ((double)(end.tv_sec - start.tv_sec) + (double)(end.tv_nsec - start.tv_nsec) / 1e9) / 1e3;
-            printf("Control: %0.6fms\n", elapsed);
+            double elapsed = ((double)(end.tv_sec - start.tv_sec) + (double)(end.tv_nsec - start.tv_nsec) / 1e9) * 1e3;
+            printf("Control: %0.3fms\n", elapsed);
         }
     }
     return NULL;
