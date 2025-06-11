@@ -13,10 +13,11 @@ void* timer_thread_function(void* arg) {
     ts.tv_nsec = INTERVAL_MS * 1000000L;  // Convert ms to ns
 
     struct timespec start, end;
-	
+    double frameTimeMs = 0.0;
     while(1) {
-	if ( frameCounter % 20 == 0 ) {
-	    printf("C:%0.3fms S:%0.3fms\n", controlFrameTimeMs, sensorFrameTimeMs);
+	clock_gettime(CLOCK_MONOTONIC, &start);
+	if ( frameCounter % 10 == 0 ) {
+	    printf("C:%0.3fms S:%0.3fms F:%0.3fms\n", controlFrameTimeMs, sensorFrameTimeMs, frameTimeMs);
 	}
 	    
     	frameCounter++;
@@ -24,6 +25,7 @@ void* timer_thread_function(void* arg) {
 		       frameCounter = 0;
 	    }
         nanosleep(&ts, NULL);
+	clock_gettime(CLOCK_MONOTONIC, &start);
     }
     return NULL;
 }
