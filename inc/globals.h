@@ -14,16 +14,17 @@
 
 extern pthread_mutex_t i2cBusLock;
 
-#define SYS_STATE_STOP    ( 0 )
-#define SYS_STATE_READY   ( 1 )
-#define SYS_STATE_INIT    ( 2 )
-#define SYS_STATE_CALIB   ( 3 )
-#define SYS_STATE_RUN     ( 4 )
-#define SYS_STATE_ERROR   ( 5 )
-#define SYS_STATE_WAIT    ( 6 )
+#define SYS_STATE_STOP     ( 0 )
+#define SYS_STATE_READY    ( 1 )
+#define SYS_STATE_INIT     ( 2 )
+#define SYS_STATE_CALIB    ( 3 )
+#define SYS_STATE_RUN      ( 4 )
+#define SYS_STATE_ERROR    ( 5 )
+#define SYS_STATE_WAIT     ( 6 )
 
-#define CALIBRATE_FRAMES  ( 500 )
-#define ERROR_WAIT_FRAMES ( 20 )
+#define MASTER_IT_RATE_HZ  ( 20 )
+#define CALIBRATE_FRAMES   ( 500 )
+#define ERROR_WAIT_FRAMES  ( 20 )
 
 extern volatile int systemState;
 
