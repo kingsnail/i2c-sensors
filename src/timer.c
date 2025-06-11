@@ -5,7 +5,7 @@
 #include <time.h>
 #include "globals.h"
 
-#define INTERVAL_MS 100
+#define INTERVAL_MS 50
 
 void* timer_thread_function(void* arg) {
     struct timespec ts;
