@@ -69,6 +69,8 @@ extern volatile float    pitchOffset;
 extern volatile float    rollOffset;
 extern volatile float    yawOffset;
 
+extern volatile double   sensorFrameTimeMs;
+extern volatile double   controlFrameTimeMs;
 
 #endif /* APPLICATION_USER_CORE_INC_GLOBALS_H_ */
 
