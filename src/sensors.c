@@ -53,6 +53,11 @@ void initIMU( void ) {
 	 	  MPU6500_R_ACCEL_CONFIG,
 	 	  0x00
                  );
+
+    writeRegister(MPU6500_ADDR,
+	 	  MPU6500_R_SMPLRT_DIV,
+	 	  0x31 // 49
+                 );
 	
 }
 
