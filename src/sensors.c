@@ -151,8 +151,7 @@ void* sensor_thread_function(void* arg) {
 		    break;
             }
 	    clock_gettime(CLOCK_MONOTONIC, &end);
-	    double elapsed = ((double)(end.tv_sec - start.tv_sec) + (double)(end.tv_nsec - start.tv_nsec) / 1e9) * 1e3;
-            printf("Sense: %0.3fms\n", elapsed);
+	    sensorFrameTimeMs = ((double)(end.tv_sec - start.tv_sec) + (double)(end.tv_nsec - start.tv_nsec) / 1e9) * 1e3;
         }
     }
     return NULL;
