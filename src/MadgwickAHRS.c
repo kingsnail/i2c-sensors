@@ -17,11 +17,13 @@
 
 #include "MadgwickAHRS.h"
 #include <math.h>
+#include "globals.h"
 
 //---------------------------------------------------------------------------------------------------
 // Definitions
 
-#define sampleFreq	20.0f		// sample frequency in Hz
+#define sampleFreq      (float)(MASTER_IT_RATE_HZ)
+
 #define betaDef		0.08f		// 2 * proportional gain
 
 //---------------------------------------------------------------------------------------------------
