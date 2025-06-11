@@ -1,4 +1,7 @@
 #include <stdint.h>
+#include <pthread.h>
+
+pthread_mutex_t i2cBusLock = PTHREAD_MUTEX_INITIALIZER;
 
 volatile int systemState  = 0;
 volatile int frameCounter = 0;
