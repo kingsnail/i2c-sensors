@@ -46,9 +46,9 @@ void executeFilter( void ) {
 }
 
 void calculateAngles( void ) {
-    roll  = rollOffset  + atan2f(( q0 * q1 + q2 * q3) * 2.0f, 1 - 2.0f * (q1 * q1 + q2 * q2));
-    pitch = pitchOffset + asinf(( q0 * q2 - q3 * q1) * 2.0f);
-    yaw   = yawOffset   + atan2f(( q0 * q3 + q1 * q2) * 2.0f, 1 - 2.0f * (q2 * q2 + q3 * q3));
+    roll  = rollOffset  + (atan2f(( q0 * q1 + q2 * q3) * 2.0f, 1 - 2.0f * (q1 * q1 + q2 * q2))) * 180.00 / M_PI;
+    pitch = pitchOffset + (asinf(( q0 * q2 - q3 * q1) * 2.0f)) * 180.00 / M_PI;
+    yaw   = yawOffset   + (atan2f(( q0 * q3 + q1 * q2) * 2.0f, 1 - 2.0f * (q2 * q2 + q3 * q3))) * 180.00 / M_PI;
 
     if ( roll >= 360.0 ) {
         roll = roll - 360.0f;
