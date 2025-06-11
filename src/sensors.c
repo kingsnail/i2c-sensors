@@ -11,6 +11,9 @@
 #include "hmc5883.h"
 #include "mpu6500.h"
 
+int calibrateCount = 0;
+int orientateCount = 0;
+
 void initCompass( void ) {
     
 	uint8_t chipidA = readRegister(HMC5883L_ADDR, HMC5883L_REG_IR_A);
@@ -59,6 +62,56 @@ void initIMU( void ) {
 	 	  0x31 // 49
                  );
 	
+}
+
+void calibrateSensors( void ) {
+
+    if ( calibrateCount == 0 ) {
+        printf("Calibrating...\r\n");
+    }
+
+    //printf("..%i", calibrateCount);
+
+    offsX += gyroX;
+    offsY += gyroY;
+    offsZ += gyroZ;
+
+    if ( calibrateCount >= CALIBRATE_FRAMES ) {
+	// Define the gyro offsets
+	offsX /= CALIBRATE_FRAMES;
+	offsY /= CALIBRATE_FRAMES;
+	offsZ /= CALIBRATE_FRAMES;
+	printf("OFFSETS: X:%i Y:%i Z:%i\n", offsX, offsY, offsZ);
+
+	// Define the accelerometer offsets
+	pitchOffset = -pitch;
+	rollOffset  = -roll;
+	yawOffset   = -yaw;
+
+	// Trigger calibration mode exit
+	calibDone = 1;
+    }
+    calibrateCount++;
+}
+
+void orientateSensors( void ) {
+
+    if ( orientateCount == 0 ) {
+        printf("Calibrating...\r\n");
+    }
+
+    //printf("..%i", calibrateCount);
+
+    offsX += gyroX;
+    offsY += gyroY;
+    offsZ += gyroZ;
+
+    if ( orientateCount >= ORIENTATE_FRAMES ) {
+	// set the pitch, roll and yaw offsets
+	    
+	orientDone = 1;
+    }
+    orientateCount++;
 }
 
 void initDisplay( void ) {
@@ -147,7 +200,12 @@ void* sensor_thread_function(void* arg) {
                     // read sensors for calibration
 		    //readCompass();
 		    readIMU();
+		    calibrateSensors();
                     break;
+		case SYS_STATE_ORIENT :
+		    readIMU();
+                    orientateSensors();
+		    break;
 
                 case SYS_STATE_RUN :
                     //read sensors for operation
