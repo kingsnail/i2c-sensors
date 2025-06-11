@@ -114,8 +114,8 @@ void* control_thread_function(void* arg) {
 		    systemState = SYS_STATE_ERROR;
 		}
             clock_gettime(CLOCK_MONOTONIC, &end);
-            double elapsed = (end.tv_sec - start.tv_sec) + (end.tv_nsec - start.tv_nsec) / 1e9;
-            printf("Control: %.6f\n", elapsed);
+            double elapsed = ((end.tv_sec - start.tv_sec) + (end.tv_nsec - start.tv_nsec) / 1e9) / 1e3;
+            printf("Control: %0.3fms\n", elapsed);
         }
     }
     return NULL;
