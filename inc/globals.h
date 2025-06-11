@@ -33,6 +33,7 @@ extern volatile int systemState;
 extern volatile int frameCounter;
 extern volatile int initDone;
 extern volatile int calibDone;
+extern volatile int orientDone;
 
 extern volatile int16_t  compX;
 extern volatile int16_t  compY;
