@@ -10,6 +10,9 @@
 #define APPLICATION_USER_CORE_INC_GLOBALS_H_
 
 #include <stdint.h>
+#include <pthread.h>
+
+extern pthread_mutex_t i2cBusLock;
 
 #define SYS_STATE_STOP    ( 0 )
 #define SYS_STATE_READY   ( 1 )
