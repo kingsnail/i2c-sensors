@@ -83,11 +83,6 @@ void calibrateSensors( void ) {
 	offsZ /= CALIBRATE_FRAMES;
 	printf("OFFSETS: X:%i Y:%i Z:%i\n", offsX, offsY, offsZ);
 
-	// Define the accelerometer offsets
-	pitchOffset = -pitch;
-	rollOffset  = -roll;
-	yawOffset   = -yaw;
-
 	// Trigger calibration mode exit
 	calibDone = 1;
     }
@@ -107,7 +102,10 @@ void orientateSensors( void ) {
     offsZ += gyroZ;
 
     if ( orientateCount >= ORIENTATE_FRAMES ) {
-	// set the pitch, roll and yaw offsets
+	// Define the attitude offsets
+	pitchOffset = -pitch;
+	rollOffset  = -roll;
+	yawOffset   = -yaw;
 	    
 	orientDone = 1;
     }
