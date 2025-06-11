@@ -43,3 +43,6 @@ volatile float    yaw     = 0.0;
 volatile float    pitchOffset = 0.0f;
 volatile float    rollOffset  = 0.0f;
 volatile float    yawOffset   = 0.0f;
+
+volatile double   sensorFrameTimeMs  = 0.0;
+volatile double   controlFrameTimeMs = 0.0;
