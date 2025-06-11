@@ -13,8 +13,17 @@
 /*
  * Register Definitions
  */
+#define MPU6500_R_XG_OFFSET_H     (0x13)
+#define MPU6500_R_XG_OFFSET_L     (0x14)
+#define MPU6500_R_YG_OFFSET_H     (0x15)
+#define MPU6500_R_YG_OFFSET_L     (0x16)
+#define MPU6500_R_ZG_OFFSET_H     (0x17)
+#define MPU6500_R_ZG_OFFSET_L     (0x18)
+#define MPU6500_R_SMPLRT_DIV      (0x19)
+#define MPU6500_R_CONFIG          (0x1A)
 #define MPU6500_R_GYRO_CONFIG     (0x1B)
 #define MPU6500_R_ACCEL_CONFIG    (0x1C)
+#define MPU6500_R_ACCEL_CONFIG_2  (0x1D)
 
 #define MPU6500_R_INT_PIN_CFG     (0x37)
 
