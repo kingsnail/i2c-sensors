@@ -7,38 +7,6 @@
 #include "globals.h"
 #include "MadgwickAHRS.h"
 
-int calibrateCount = 0;
-
-void calibrateSensors( void ) {
-
-    if ( calibrateCount == 0 ) {
-        printf("Calibrating...\r\n");
-    }
-
-    //printf("..%i", calibrateCount);
-
-    offsX += gyroX;
-    offsY += gyroY;
-    offsZ += gyroZ;
-
-    if ( calibrateCount >= CALIBRATE_FRAMES ) {
-	// Define the gyro offsets
-	offsX /= CALIBRATE_FRAMES;
-	offsY /= CALIBRATE_FRAMES;
-	offsZ /= CALIBRATE_FRAMES;
-	printf("OFFSETS: X:%i Y:%i Z:%i\n", offsX, offsY, offsZ);
-
-	// Define the accelerometer offsets
-	pitchOffset = -pitch;
-	rollOffset  = -roll;
-	yawOffset   = -yaw;
-
-	// Trigger calibration mode exit
-	calibDone = 1;
-    }
-    calibrateCount++;
-}
-
 void executeFilter( void ) {
     MadgwickAHRSupdateIMU(sGyroX, sGyroY, sGyroZ, sAccX, sAccY, sAccZ);
 }
@@ -95,13 +63,17 @@ void* control_thread_function(void* arg) {
 
 		case SYS_STATE_CALIB:
 		    processFrame();
-		    if ( calibDone == 0) {
-	  	        calibrateSensors();
-		    } else {
-			systemState = SYS_STATE_RUN;
+		    if ( calibDone == 1) {
+			systemState = SYS_STATE_ORIENT;
+			orientDone = 0;
 		    }
                     break;
 
+		case SYS_STATE_ORIENT :
+                    if ( orientDone == 1 ) {
+			systemState = SYS_STATE_RUN;
+		    break;
+		    
 		case SYS_STATE_INIT:
 		    if ( initDone == 1 ) {
 		        systemState = SYS_STATE_CALIB;
