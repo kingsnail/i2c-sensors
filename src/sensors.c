@@ -192,7 +192,9 @@ void* sensor_thread_function(void* arg) {
                         //initCompass();
                         initIMU();
                         initDisplay();
-                        initDone = 1; 
+                        initDone       = 1; 
+			calibCount     = 0;
+			orientateCount = 0;
 		    }
 		    break;
                 
@@ -202,6 +204,7 @@ void* sensor_thread_function(void* arg) {
 		    readIMU();
 		    calibrateSensors();
                     break;
+		    
 		case SYS_STATE_ORIENT :
 		    readIMU();
                     orientateSensors();
