@@ -23,10 +23,18 @@ void calibrateSensors( void ) {
     offsZ += gyroZ;
 
     if ( calibrateCount >= CALIBRATE_FRAMES ) {
+	// Define the gyro offsets
 	offsX /= CALIBRATE_FRAMES;
 	offsY /= CALIBRATE_FRAMES;
 	offsZ /= CALIBRATE_FRAMES;
 	printf("OFFSETS: X:%i Y:%i Z:%i", offsX, offsY, offsZ);
+
+	// Define the accelerometer offsets
+	pitchOffset = -pitch;
+	rollOffset  = -roll;
+	yawOffset   = -yaw;
+
+	// Trigger calibration mode exit
 	calibDone = 1;
     }
     calibrateCount++;
@@ -79,6 +87,7 @@ void* control_thread_function(void* arg) {
 		    break;
 
 		case SYS_STATE_CALIB:
+		    processFrame();
 		    if ( calibDone == 0) {
 	  	        calibrateSensors();
 		    } else {
