@@ -22,10 +22,8 @@ extern pthread_mutex_t i2cBusLock;
 #define SYS_STATE_ERROR   ( 5 )
 #define SYS_STATE_WAIT    ( 6 )
 
-#define CALIBRATE_FRAMES  ( 80 )
+#define CALIBRATE_FRAMES  ( 500 )
 #define ERROR_WAIT_FRAMES ( 20 )
-
-#define MINOR_CYCLE_TICKS ( 20 )
 
 extern volatile int systemState;
 
