@@ -25,7 +25,8 @@ void* timer_thread_function(void* arg) {
 		       frameCounter = 0;
 	    }
         nanosleep(&ts, NULL);
-	clock_gettime(CLOCK_MONOTONIC, &start);
+	clock_gettime(CLOCK_MONOTONIC, &end);
+        frameTimeMs = ((double)(end.tv_sec - start.tv_sec) + (double)(end.tv_nsec - start.tv_nsec) / 1e9) * 1e3;
     }
     return NULL;
 }
