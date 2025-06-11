@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <math.h>
+#include <time.h>
 #include "globals.h"
 #include "MadgwickAHRS.h"
 
@@ -62,7 +63,7 @@ void processFrame( void ) {
 
 
 void* control_thread_function(void* arg) {
-
+    struct timespec start, end;
     int lastFrameCounter = 0;
     int waitCount        = 0;
     systemState          = SYS_STATE_READY; 
@@ -70,6 +71,7 @@ void* control_thread_function(void* arg) {
 	
     while(1) {
         if ( frameCounter != lastFrameCounter ) {
+            clock_gettime(CLOCK_MONOTONIC, &start);
             lastFrameCounter = frameCounter;
 
 	    switch ( systemState ) {
@@ -111,7 +113,9 @@ void* control_thread_function(void* arg) {
 		default:
 		    systemState = SYS_STATE_ERROR;
 		}
-
+            clock_gettime(CLOCK_MONOTONIC, &end);
+            double elapsed = (end.tv_sec - start.tv_sec) + (end.tv_nsec - start.tv_nsec) / 1e9;
+            printf("Control: %.6f\n", elapsed);
         }
     }
     return NULL;
