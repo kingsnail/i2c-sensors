@@ -4,13 +4,12 @@
 #include <unistd.h>
 #include <stdint.h>
 #include <math.h>
+#include <time.h>
 
 #include "globals.h"
 #include "i2c-utils.h"
 #include "hmc5883.h"
 #include "mpu6500.h"
-
-#define INTERVAL_MS 500
 
 void initCompass( void ) {
     
@@ -119,11 +118,11 @@ void readIMU( void ) {
 void* sensor_thread_function(void* arg) {
 
     int lastFrameCounter = 0;
-  
+    struct timespec start, end;
     while(1) {
         if ( frameCounter != lastFrameCounter ) {
-            lastFrameCounter = frameCounter;
-            printf("Sense\n");
+            clock_gettime(CLOCK_MONOTONIC, &start);
+	    lastFrameCounter = frameCounter;
             switch( systemState ) {
                 
                 case SYS_STATE_READY :
@@ -151,6 +150,9 @@ void* sensor_thread_function(void* arg) {
                     readIMU();
 		    break;
             }
+	    clock_gettime(CLOCK_MONOTONIC, &end);
+	    double elapsed = (end.tv_sec - start.tv_sec) + (end.tv_nsec - start.tv_nsec) / 1e9;
+            printf("Sense: %.6f\n", elapsed);
         }
     }
     return NULL;
