@@ -39,24 +39,29 @@ int openI2C( void ) {
  * specified address and register combination        *
  *****************************************************/
 uint8_t readRegister(uint8_t addr, uint8_t reg) {
+    pthread_mutex_lock(&i2cBusLock);
     uint8_t data = 0;
 
     if (device_open != 1) openI2C();
 
     if (ioctl(fd, I2C_SLAVE, addr) < 0) {
         perror("Failed to set I2C address");
+        pthread_mutex_unlock(&i2cBusLock);
         return 0;
     }
 
     if (write(fd, &reg, 1) != 1) {
         perror("Failed to write register address");
+        pthread_mutex_unlock(&i2cBusLock);
         return 0;
     }
 
     if (read(fd, &data, 1) != 1) {
         perror("Failed to read register data");
+        pthread_mutex_unlock(&i2cBusLock);
         return 0;
     }
+    pthread_mutex_unlock(&i2cBusLock);
 
     return data;
 }
@@ -68,12 +73,15 @@ uint8_t readRegister(uint8_t addr, uint8_t reg) {
  * specified address and register combination         *
  ******************************************************/
 uint8_t writeRegister( uint8_t addr, uint8_t reg, uint8_t val ){
+
+    pthread_mutex_lock(&i2cBusLock);
     printf("writeRegister(%02x, %02x, %02x)\n", addr, reg, val);
     if ( device_open != 1 ) {
         openI2C();
     }
     if(ioctl(fd, I2C_SLAVE, addr) < 0) {
         printf("Could not set I2C device address %02x\r\n", addr);
+        pthread_mutex_unlock(&i2cBusLock);
         return 0;
     }
     // Write the register number
@@ -81,8 +89,10 @@ uint8_t writeRegister( uint8_t addr, uint8_t reg, uint8_t val ){
     buff[1] = val;
     if(write(fd,&buff,2) != 2) {
         printf("Could not write the pointer register and data %02x, %02x, %02x.\r\n", addr, reg, val);
+        pthread_mutex_unlock(&i2cBusLock);
         return( 0 );
     }
+    pthread_mutex_unlock(&i2cBusLock);
     return( 1 );
 }
      
