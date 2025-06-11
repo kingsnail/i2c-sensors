@@ -5,7 +5,7 @@
 #include <time.h>
 #include "globals.h"
 
-#define INTERVAL_MS 500
+#define INTERVAL_MS 200
 
 void* timer_thread_function(void* arg) {
     struct timespec ts;
@@ -13,7 +13,10 @@ void* timer_thread_function(void* arg) {
     ts.tv_nsec = INTERVAL_MS * 1000000L;  // Convert ms to ns
 
     while(1) {
-        printf("Tick\n");
+	if ( frameCounter % 20 == 0 ) {
+	    printf("C:%0.3fms S:%0.3fms\n", controlFrameTimeMs, sensorFrameTimeMs);
+	}
+	    
     	frameCounter++;
 	    if ( frameCounter > 10000 ) {
 		       frameCounter = 0;
