@@ -5,7 +5,7 @@
 #include <math.h>
 #include <time.h>
 #include "globals.h"
-#include "i2-utils.h"
+#include "i2c-utils.h"
 #include "s0018.h"
 
 void initDisplay( void ) {
