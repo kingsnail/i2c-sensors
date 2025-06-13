@@ -73,6 +73,7 @@ extern volatile float    yawOffset;
 
 extern volatile double   sensorFrameTimeMs;
 extern volatile double   controlFrameTimeMs;
+extern volatile double   displayFrameTimeMs;
 
 #endif /* APPLICATION_USER_CORE_INC_GLOBALS_H_ */
 
