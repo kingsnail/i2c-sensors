@@ -70,6 +70,7 @@ void* control_thread_function(void* arg) {
                     break;
 
 		case SYS_STATE_ORIENT :
+		    processFrame();
                     if ( orientDone == 1 ) {
 			systemState = SYS_STATE_RUN;
 		    break;
