@@ -13,6 +13,9 @@
 /*
  * Register Definitions
  */
+#define S018_R_COMMAND          (0x80)
+#define SO18_R_DATA             (0x00)
+
 // Fundamental Commands
 #define S0018_R_CONTRAST        (0x81)
 #define S0018_R_ENTIRE_ON       (0xA4)
