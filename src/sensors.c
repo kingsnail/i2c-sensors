@@ -135,10 +135,6 @@ void orientateSensors( void ) {
     orientateCount++;
 }
 
-void initDisplay( void ) {
-
-}
-
 void readCompass( void ) {
     uint8_t dataXMSB = readRegister(HMC5883L_ADDR, HMC5883L_REG_X_MSB);
     uint8_t dataXLSB = readRegister(HMC5883L_ADDR, HMC5883L_REG_X_LSB);
@@ -212,7 +208,6 @@ void* sensor_thread_function(void* arg) {
 		    if  ( initDone != 1 ) {
                         //initCompass();
                         initIMU();
-                        initDisplay();
                         initDone       = 1; 
 			calibrateCount = 0;
 			orientateCount = 0;
