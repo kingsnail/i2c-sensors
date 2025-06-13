@@ -85,8 +85,30 @@ void calibrateSensors( void ) {
         
 	// write the offsets to the MPU6500
         writeRegister(MPU6500_ADDR,
-  	 	      MPU6500_R_ACCEL_CONFIG,   
-	 	      0x00
+  	 	      MPU6500_R_XG_OFFSET_L ,   
+	 	      (uint8_t)(offsX && 0xFF)
+                     );	    
+        writeRegister(MPU6500_ADDR,
+  	 	      MPU6500_R_XG_OFFSET_H ,   
+	 	      (uint8_t)((offsX >> 8 )&& 0xFF)
+                     );
+        writeRegister(MPU6500_ADDR,
+  	 	      MPU6500_R_YG_OFFSET_L ,   
+	 	      (uint8_t)(offsX && 0xFF)
+                     );
+	    
+        writeRegister(MPU6500_ADDR,
+  	 	      MPU6500_R_YG_OFFSET_H ,   
+	 	      (uint8_t)((offsX >> 8 )&& 0xFF)
+                     );
+        writeRegister(MPU6500_ADDR,
+  	 	      MPU6500_R_ZG_OFFSET_L ,   
+	 	      (uint8_t)(offsX && 0xFF)
+                     );
+	    
+        writeRegister(MPU6500_ADDR,
+  	 	      MPU6500_R_ZG_OFFSET_H ,   
+	 	      (uint8_t)((offsX >> 8 )&& 0xFF)
                      );
 	    
 	    
