@@ -72,9 +72,9 @@ void calibrateSensors( void ) {
 
     //printf("..%i", calibrateCount);
 
-    offsX += gyroX;
-    offsY += gyroY;
-    offsZ += gyroZ;
+    offsX += (int)gyroX;
+    offsY += (int)gyroY;
+    offsZ += (int)gyroZ;
 
     if ( calibrateCount >= CALIBRATE_FRAMES ) {
 	// Define the gyro offsets
@@ -82,7 +82,14 @@ void calibrateSensors( void ) {
 	offsY /= CALIBRATE_FRAMES;
 	offsZ /= CALIBRATE_FRAMES;
 	printf("OFFSETS: X:%i Y:%i Z:%i\n", offsX, offsY, offsZ);
-
+        
+	// write the offsets to the MPU6500
+        writeRegister(MPU6500_ADDR,
+  	 	      MPU6500_R_ACCEL_CONFIG,   
+	 	      0x00
+                     );
+	    
+	    
 	// Trigger calibration mode exit
 	calibDone = 1;
     }
@@ -92,14 +99,8 @@ void calibrateSensors( void ) {
 void orientateSensors( void ) {
 
     if ( orientateCount == 0 ) {
-        printf("Calibrating...\r\n");
+        printf("Orientating...\r\n");
     }
-
-    //printf("..%i", calibrateCount);
-
-    offsX += gyroX;
-    offsY += gyroY;
-    offsZ += gyroZ;
 
     if ( orientateCount >= ORIENTATE_FRAMES ) {
 	// Define the attitude offsets
