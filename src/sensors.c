@@ -188,9 +188,9 @@ void readIMU( void ) {
     sAccY  = accY  * 1.0/256.0;
     sAccZ  = accZ  * 1.0/256.0;
 
-    sGyroX = ((gyroX - offsX) / 131.0f) * M_PI / 180.0f;
-    sGyroY = ((gyroY - offsY) / 131.0f) * M_PI / 180.0f;
-    sGyroZ = ((gyroZ - offsZ) / 131.0f) * M_PI / 180.0f;
+    sGyroX = (gyroX / 131.0f) * M_PI / 180.0f;
+    sGyroY = (gyroY / 131.0f) * M_PI / 180.0f;
+    sGyroZ = (gyroZ / 131.0f) * M_PI / 180.0f;
 
 }
 
