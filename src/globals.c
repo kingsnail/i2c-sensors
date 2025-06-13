@@ -47,3 +47,4 @@ volatile float    yawOffset   = 0.0f;
 
 volatile double   sensorFrameTimeMs  = 0.0;
 volatile double   controlFrameTimeMs = 0.0;
+volatile double   displayFrameTimeMs = 0.0;
