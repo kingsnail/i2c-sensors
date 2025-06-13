@@ -10,8 +10,16 @@
 
 void initDisplay( void ) {
     writeRegister( S0018_ADDR,
-	           0x80,
-	           cmd
+	           S0018_R_COMMAND,
+	           S0018_R_ENTIRE_ON
+                 );
+    writeRegister( S0018_ADDR,
+	           S0018_R_COMMAND,
+	           S0018_R_NORMAL
+                 );
+    writeRegister( S0018_ADDR,
+	           S0018_R_COMMAND,
+	           S0018_R_DISP_ON
                  );
 }
 
