@@ -10,6 +10,7 @@
 #include "timer.h"
 #include "control.h"
 #include "sensors.h"
+#include "display.h"
 
 int main() {
     pthread_t timer_thread;
@@ -18,7 +19,10 @@ int main() {
     int       sensor_thread_id;
     pthread_t control_thread;
     int       control_thread_id;
+    pthread_t display_thread;
+    int       display_thread_id;
 
+    
     if (pthread_create(&timer_thread, NULL, timer_thread_function, &timer_thread_id) != 0) {
         perror("Failed to create timer thread");
         return 1;
@@ -34,9 +38,15 @@ int main() {
         return 1;
     }
 
+    if (pthread_create(&display_thread, NULL, display_thread_function, &display_thread_id) != 0) {
+        perror("Failed to create display thread");
+        return 1;
+    }
+
     pthread_join(timer_thread, NULL);
     pthread_join(sensor_thread, NULL);
     pthread_join(control_thread, NULL);
+    pthread_join(display_thread, NULL);
     
     printf("All threads completed.\n");
     return 0;
