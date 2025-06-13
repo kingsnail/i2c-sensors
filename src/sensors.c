@@ -214,7 +214,7 @@ void* sensor_thread_function(void* arg) {
                         initIMU();
                         initDisplay();
                         initDone       = 1; 
-			calibCount     = 0;
+			calibrateCount = 0;
 			orientateCount = 0;
 		    }
 		    break;
