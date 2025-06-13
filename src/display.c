@@ -5,7 +5,19 @@
 #include <math.h>
 #include <time.h>
 #include "globals.h"
-#include "MadgwickAHRS.h"
+#include "i2-utils.h"
+#include "s0018.h"
+
+void initDisplay( void ) {
+    writeRegister( S0018_ADDR,
+	           0x80,
+	           cmd
+                 );
+}
+
+void processDisplay( void ) {
+
+}
 
 void* display_thread_function(void* arg) {
     struct timespec start, end;
@@ -21,15 +33,19 @@ void* display_thread_function(void* arg) {
 
 	          switch ( systemState ) {
 
+			    case SYS_STATE_INIT: 
+			        initDisplay();
+			        break;
+			  
 		            case SYS_STATE_RUN:
-		                //processFrame();
+		                processDisplay();
 		                break;
 
     		        default:
 		                // Do nothing
 		        }
             clock_gettime(CLOCK_MONOTONIC, &end);
-            controlFrameTimeMs = ((double)(end.tv_sec - start.tv_sec) + (double)(end.tv_nsec - start.tv_nsec) / 1e9) * 1e3;
+            displayFrameTimeMs = ((double)(end.tv_sec - start.tv_sec) + (double)(end.tv_nsec - start.tv_nsec) / 1e9) * 1e3;
         }
     }
     return NULL;
