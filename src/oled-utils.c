@@ -4,6 +4,9 @@
 #include "oledfont.h"  	 
 #include "delay.h"
 
+#define OLED_DATA ( 1 == 0 )
+#define OLED_CMD  ( 1 == 1 )
+
 /**********************************************
 // Write Command
 **********************************************/
@@ -37,11 +40,11 @@ void OLED_WR_Byte(uint8_t dat, uint8_t cmd)
 
 
 /********************************************
-// fill_Picture
-********************************************/
-void fill_picture(unsigned char fill_Data)
+ * fill_Picture                             *
+ ********************************************/
+void fill_picture(uint8_t fill_Data)
 {
-	unsigned char m,n;
+	uint8_t m,n;
 	for(m=0;m<8;m++)
 	{
 		OLED_WR_Byte(0xb0+m,0);		//page0-page1
@@ -55,56 +58,37 @@ void fill_picture(unsigned char fill_Data)
 }
 
 
-/***********************Delay****************************************/
-void Delay_50ms(unsigned int Del_50ms)
-{
-	unsigned int m;
-	for(;Del_50ms>0;Del_50ms--)
-		for(m=6245;m>0;m--);
-}
-
-void Delay_1ms(unsigned int Del_1ms)
-{
-	unsigned char j;
-	while(Del_1ms--)
-	{	
-		for(j=0;j<123;j++);
-	}
-}
-
-//坐标设置
-
-	void OLED_Set_Pos(unsigned char x, unsigned char y) 
-{ 	OLED_WR_Byte(0xb0+y,OLED_CMD);
+void OLED_Set_Pos(uint8_t x, uint8_t y) {
+	OLED_WR_Byte(0xb0+y,OLED_CMD);
 	OLED_WR_Byte(((x&0xf0)>>4)|0x10,OLED_CMD);
 	OLED_WR_Byte((x&0x0f),OLED_CMD); 
 }   	  
-//开启OLED显示    
-void OLED_Display_On(void)
-{
+
+void OLED_Display_On(void) {
 	OLED_WR_Byte(0X8D,OLED_CMD);  //SET DCDC命令
 	OLED_WR_Byte(0X14,OLED_CMD);  //DCDC ON
 	OLED_WR_Byte(0XAF,OLED_CMD);  //DISPLAY ON
 }
-//关闭OLED显示     
-void OLED_Display_Off(void)
-{
+
+void OLED_Display_Off(void) {
 	OLED_WR_Byte(0X8D,OLED_CMD);  //SET DCDC命令
 	OLED_WR_Byte(0X10,OLED_CMD);  //DCDC OFF
 	OLED_WR_Byte(0XAE,OLED_CMD);  //DISPLAY OFF
-}		   			 
-//清屏函数,清完屏,整个屏幕是黑色的!和没点亮一样!!!	  
-void OLED_Clear(void)  
-{  
+}		   		
+
+void OLED_Clear(void)  {  
 	u8 i,n;		    
 	for(i=0;i<8;i++)  
 	{  
 		OLED_WR_Byte (0xb0+i,OLED_CMD);    //设置页地址（0~7）
 		OLED_WR_Byte (0x00,OLED_CMD);      //设置显示位置—列低地址
 		OLED_WR_Byte (0x10,OLED_CMD);      //设置显示位置—列高地址   
-		for(n=0;n<128;n++)OLED_WR_Byte(0,OLED_DATA); 
-	} //更新显示
+		for(n=0;n<128;n++) {
+		    OLED_WR_Byte(0,OLED_DATA);
+		} 
+	} 
 }
+
 void OLED_On(void)  
 {  
 	u8 i,n;		    
@@ -113,20 +97,19 @@ void OLED_On(void)
 		OLED_WR_Byte (0xb0+i,OLED_CMD);    //设置页地址（0~7）
 		OLED_WR_Byte (0x00,OLED_CMD);      //设置显示位置—列低地址
 		OLED_WR_Byte (0x10,OLED_CMD);      //设置显示位置—列高地址   
-		for(n=0;n<128;n++)OLED_WR_Byte(1,OLED_DATA); 
-	} //更新显示
+		for(n=0;n<128;n++) {
+		    OLED_WR_Byte(1,OLED_DATA);
+		}
+	} 
 }
-//在指定位置显示一个字符,包括部分字符
-//x:0~127
-//y:0~63
-//mode:0,反白显示;1,正常显示				 
-//size:选择字体 16/12 
-void OLED_ShowChar(u8 x,u8 y,u8 chr,u8 Char_Size)
+
+void OLED_ShowChar(uint8_t x, uint8_t y, uint8_t chr, uint8_t Char_Size)
 {      	
-	unsigned char c=0,i=0;	
-		c=chr-' ';//得到偏移后的值			
-		if(x>Max_Column-1){x=0;y=y+2;}
-		if(Char_Size ==16)
+	uint8_t c=0;
+	uint8_t i=0;	
+		c=chr-' ';			
+		if( x > Max_Column-1) { x=0; y=y+2; }
+		if( Char_Size == 16 )
 			{
 			OLED_Set_Pos(x,y);	
 			for(i=0;i<8;i++)
@@ -138,24 +121,18 @@ void OLED_ShowChar(u8 x,u8 y,u8 chr,u8 Char_Size)
 			else {	
 				OLED_Set_Pos(x,y);
 				for(i=0;i<6;i++)
-				OLED_WR_Byte(F6x8[c][i],OLED_DATA);
-				
+				OLED_WR_Byte(F6x8[c][i],OLED_DATA);		
 			}
 }
-//m^n函数
+
 u32 oled_pow(u8 m,u8 n)
 {
 	u32 result=1;	 
 	while(n--)result*=m;    
 	return result;
 }				  
-//显示2个数字
-//x,y :起点坐标	 
-//len :数字的位数
-//size:字体大小
-//mode:模式	0,填充模式;1,叠加模式
-//num:数值(0~4294967295);	 		  
-void OLED_ShowNum(u8 x,u8 y,u32 num,u8 len,u8 size2)
+
+void OLED_ShowNum(uint8_t x, uint8_t y, int num, uint8_t len, uint8_t size2)
 {         	
 	u8 t,temp;
 	u8 enshow=0;						   
@@ -174,8 +151,8 @@ void OLED_ShowNum(u8 x,u8 y,u32 num,u8 len,u8 size2)
 	 	OLED_ShowChar(x+(size2/2)*t,y,temp+'0',size2); 
 	}
 } 
-//显示一个字符号串
-void OLED_ShowString(u8 x,u8 y,u8 *chr,u8 Char_Size)
+
+void OLED_ShowString(uint8_t x, uint8_t y, uint8_t *chr, uint8_t Char_Size)
 {
 	unsigned char j=0;
 	while (chr[j]!='\0')
@@ -185,28 +162,11 @@ void OLED_ShowString(u8 x,u8 y,u8 *chr,u8 Char_Size)
 			j++;
 	}
 }
-//显示汉字
-void OLED_ShowCHinese(u8 x,u8 y,u8 no)
-{      			    
-	u8 t,adder=0;
-	OLED_Set_Pos(x,y);	
-    for(t=0;t<16;t++)
-		{
-				OLED_WR_Byte(Hzk[2*no][t],OLED_DATA);
-				adder+=1;
-     }	
-		OLED_Set_Pos(x,y+1);	
-    for(t=0;t<16;t++)
-			{	
-				OLED_WR_Byte(Hzk[2*no+1][t],OLED_DATA);
-				adder+=1;
-      }					
-}
-/***********功能描述：显示显示BMP图片128×64起始点坐标(x,y),x的范围0～127，y为页的范围0～7*****************/
-void OLED_DrawBMP(unsigned char x0, unsigned char y0,unsigned char x1, unsigned char y1,unsigned char BMP[])
+
+void OLED_DrawBMP(unit8_t x0, unit8_t y0, unit8_t x1, unit8_t y1, unit8_t BMP[])
 { 	
- unsigned int j=0;
- unsigned char x,y;
+ unit8_t j=0;
+ unit8_t x,y;
   
   if(y1%8==0) y=y1/8;      
   else y=y1/8+1;
@@ -220,45 +180,9 @@ void OLED_DrawBMP(unsigned char x0, unsigned char y0,unsigned char x1, unsigned 
 	}
 } 
 
-//初始化SSD1306					    
 void OLED_Init(void)
 { 	
- 
- 	 
- 	GPIO_InitTypeDef  GPIO_InitStructure;
- 	
- 	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOB|RCC_APB2Periph_GPIOD|RCC_APB2Periph_GPIOG, ENABLE);	 //使能PC,D,G端口时钟
-
-	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_4|GPIO_Pin_5|GPIO_Pin_6|GPIO_Pin_7|GPIO_Pin_3|GPIO_Pin_8;	 //PD3,PD6推挽输出  
- 	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP; 		 //推挽输出
-	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;//速度50MHz
- 	GPIO_Init(GPIOD, &GPIO_InitStructure);	  //初始化GPIOD3,6
- 	GPIO_SetBits(GPIOD,GPIO_Pin_4|GPIO_Pin_5|GPIO_Pin_6|GPIO_Pin_7|GPIO_Pin_3|GPIO_Pin_8);	//PD3,PD6 输出高
-
- #if OLED_MODE==1
- 
- 	GPIO_InitStructure.GPIO_Pin =0xFF; //PC0~7 OUT推挽输出
- 	GPIO_Init(GPIOC, &GPIO_InitStructure);
- 	GPIO_SetBits(GPIOC,0xFF); //PC0~7输出高
-
- 	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_13|GPIO_Pin_14|GPIO_Pin_15;				 //PG13,14,15 OUT推挽输出
- 	GPIO_Init(GPIOG, &GPIO_InitStructure);
- 	GPIO_SetBits(GPIOG,GPIO_Pin_13|GPIO_Pin_14|GPIO_Pin_15);						 //PG13,14,15 OUT  输出高
-
- #else
- 	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_0|GPIO_Pin_1;				 //PC0,1 OUT推挽输出
- 	GPIO_Init(GPIOC, &GPIO_InitStructure);
- 	GPIO_SetBits(GPIOC,GPIO_Pin_0|GPIO_Pin_1);						 //PC0,1 OUT  输出高
-
-	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_15;				 //PG15 OUT推挽输出	  RST
- 	GPIO_Init(GPIOG, &GPIO_InitStructure);
- 	GPIO_SetBits(GPIOG,GPIO_Pin_15);						 //PG15 OUT  输出高
-
-
- #endif
-delay_ms(200);
-
-OLED_WR_Byte(0xAE,OLED_CMD);//--display off
+        OLED_WR_Byte(0xAE,OLED_CMD);//--display off
 	OLED_WR_Byte(0x00,OLED_CMD);//---set low column address
 	OLED_WR_Byte(0x10,OLED_CMD);//---set high column address
 	OLED_WR_Byte(0x40,OLED_CMD);//--set start line address  
@@ -293,32 +217,3 @@ OLED_WR_Byte(0xAE,OLED_CMD);//--display off
 	
 	OLED_WR_Byte(0xAF,OLED_CMD);//--turn on oled panel
 }  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
