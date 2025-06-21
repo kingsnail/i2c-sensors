@@ -19,6 +19,10 @@ void initCompass( void ) {
 	uint8_t chipid = readRegister(QMC5883L_ADDR, QMC5883L_REG_CHIP_ID);
 	printf("QMC5883L ID=%2x\r\n", chipid);
 
+	writeRegister(QMC5883L_ADDR,
+	 	      QMC5883L_REG_CONTROL_1,
+	 	      0x01
+                     );
 }
 
 void initIMU( void ) {
