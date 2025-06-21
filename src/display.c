@@ -10,7 +10,10 @@
 
 void initDisplay( void ) {
     OLED_Init();
-
+    OLED_Display_On();
+    OLED_Clear();
+    OLED_ShowChar( 0, 0,  'A', 8);
+    OLED_ShowChar( 8, 0,  'B', 8);
 }
 
 void processDisplay( void ) {
