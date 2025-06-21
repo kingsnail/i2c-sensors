@@ -1,3 +1,4 @@
+#include <stdint.h>
 #include "s0018.h"
 #include "stdlib.h"
 #include "oledfont.h"  	 
