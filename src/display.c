@@ -6,21 +6,11 @@
 #include <time.h>
 #include "globals.h"
 #include "i2c-utils.h"
-#include "s0018.h"
+#include "oled-utils.h"
 
 void initDisplay( void ) {
-    writeRegister( S0018_ADDR,
-	           S0018_R_COMMAND,
-	           S0018_R_ENTIRE_ON
-                 );
-    writeRegister( S0018_ADDR,
-	           S0018_R_COMMAND,
-	           S0018_R_INVERSE
-                 );
-    writeRegister( S0018_ADDR,
-	           S0018_R_COMMAND,
-	           S0018_R_DISP_ON
-                 );
+    OLED_Init();
+
 }
 
 void processDisplay( void ) {
