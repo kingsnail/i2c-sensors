@@ -13,8 +13,8 @@
 #define X_WIDTH 	128
 #define Y_WIDTH 	64	    						  
 
-#define OLED_DATA ( 1 == 0 )
-#define OLED_CMD  ( 1 == 1 )
+#define OLED_DATA ( 1 )
+#define OLED_CMD  ( 0 )
 
 /**********************************************
 // Write Command
