@@ -17,6 +17,14 @@ void initDisplay( void ) {
 }
 
 void processDisplay( void ) {
+    OLED_ShowChar( 0, 0, 'M', 8);
+    OLED_ShowChar( 8, 0, ':', 8);
+    OLED_ShowChar( 0, 10, 'P', 8);
+    OLED_ShowChar( 8, 10, ':', 8);
+    OLED_ShowChar( 0, 20, 'R', 8);
+    OLED_ShowChar( 8, 20, ':', 8);
+    OLED_ShowChar( 0, 30, 'Y', 8);
+    OLED_ShowChar( 8, 30, ':', 8);
 
 }
 
