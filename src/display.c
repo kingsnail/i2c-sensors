@@ -19,13 +19,15 @@ void initDisplay( void ) {
 void processDisplay( void ) {
     OLED_ShowChar( 0, 0, 'M', 8);
     OLED_ShowChar( 8, 0, ':', 8);
-    OLED_ShowChar( 0, 10, 'P', 8);
-    OLED_ShowChar( 8, 10, ':', 8);
-    OLED_ShowChar( 0, 20, 'R', 8);
-    OLED_ShowChar( 8, 20, ':', 8);
-    OLED_ShowChar( 0, 30, 'Y', 8);
-    OLED_ShowChar( 8, 30, ':', 8);
+    OLED_ShowChar( 0, 2, 'P', 8);
+    OLED_ShowChar( 8, 2, ':', 8);
+    OLED_ShowChar( 0, 4, 'R', 8);
+    OLED_ShowChar( 8, 4, ':', 8);
+    OLED_ShowChar( 0, 6, 'Y', 8);
+    OLED_ShowChar( 8, 6, ':', 8);
     OLED_ShowNum(  16, 0, systemState, 2, 8);
+    OLED_ShowNum(  16, 2, 1234, 4, 8);
+    OLED_ShowNum(  16, 5, 4567, 4, 8);
 }
 
 void* display_thread_function(void* arg) {
