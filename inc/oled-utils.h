@@ -21,7 +21,7 @@ void OLED_ShowNum(uint8_t x, uint8_t y, int num, uint8_t len, uint8_t size2);
 
 void OLED_ShowString(uint8_t x, uint8_t y, uint8_t *chr, uint8_t Char_Size);
 
-void OLED_DrawBMP(unit8_t x0, unit8_t y0, unit8_t x1, unit8_t y1, unit8_t BMP[]);
+void OLED_DrawBMP(uint8_t x0, uint8_t y0, uint8_t x1, uint8_t y1, uint8_t BMP[]);
 
 void OLED_Init(void);
 
