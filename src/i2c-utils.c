@@ -76,7 +76,7 @@ uint8_t readRegister(uint8_t addr, uint8_t reg) {
 uint8_t writeRegister( uint8_t addr, uint8_t reg, uint8_t val ){
 
     pthread_mutex_lock(&i2cBusLock);
-    printf("writeRegister(%02x, %02x, %02x)\n", addr, reg, val);
+    //printf("writeRegister(%02x, %02x, %02x)\n", addr, reg, val);
     if ( device_open != 1 ) {
         openI2C();
     }
