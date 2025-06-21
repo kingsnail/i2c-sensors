@@ -15,7 +15,7 @@ void initDisplay( void ) {
                  );
     writeRegister( S0018_ADDR,
 	           S0018_R_COMMAND,
-	           S0018_R_NORMAL
+	           S0018_R_INVERSE
                  );
     writeRegister( S0018_ADDR,
 	           S0018_R_COMMAND,
