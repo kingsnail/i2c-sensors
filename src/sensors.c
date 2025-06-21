@@ -206,7 +206,7 @@ void* sensor_thread_function(void* arg) {
                 
                 case SYS_STATE_INIT :
 		    if  ( initDone != 1 ) {
-                        //initCompass();
+                        initCompass();
                         initIMU();
                         initDone       = 1; 
 			calibrateCount = 0;
@@ -216,19 +216,20 @@ void* sensor_thread_function(void* arg) {
                 
                 case SYS_STATE_CALIB :
                     // read sensors for calibration
-		    //readCompass();
+		    readCompass();
 		    readIMU();
 		    calibrateSensors();
                     break;
 		    
 		case SYS_STATE_ORIENT :
+		    readCompass();
 		    readIMU();
                     orientateSensors();
 		    break;
 
                 case SYS_STATE_RUN :
                     //read sensors for operation
-		    //readCompass();
+		    readCompass();
                     readIMU();
 		    break;
             }
