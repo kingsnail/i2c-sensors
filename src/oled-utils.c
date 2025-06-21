@@ -7,47 +7,32 @@
 /**********************************************
 // Write Command
 **********************************************/
-void Write_Oled_Command(unsigned char IIC_Command)
+void Write_Oled_Command(uint8_t Oled_Command)
 {
-   IIC_Start();
-   Write_IIC_Byte(0x78);            //Slave address,SA0=0
-	IIC_Wait_Ack();	
-   Write_IIC_Byte(0x00);			//write command
-	IIC_Wait_Ack();	
-   Write_IIC_Byte(IIC_Command); 
-	IIC_Wait_Ack();	
-   IIC_Stop();
+   writeRegister( S0018_ADDR,
+	          S0018_R_COMMAND,    // 0x00
+	          Oled_Command
+                 );	
 }
 
 /**********************************************
 // Write Data
 **********************************************/
-void Write_Oled_Data(unsigned char IIC_Data)
+void Write_Oled_Data(uint8_t Oled_Data)
 {
-   IIC_Start();
-   Write_IIC_Byte(0x78);			//D/C#=0; R/W#=0
-	IIC_Wait_Ack();	
-   Write_IIC_Byte(0x40);			//write data
-	IIC_Wait_Ack();	
-   Write_IIC_Byte(IIC_Data);
-	IIC_Wait_Ack();	
-   IIC_Stop();
+   writeRegister( S0018_ADDR,
+	          S0018_R_DATA,    // 0x40
+	          Oled_Data
+                 );	
 }
 
-void OLED_WR_Byte(unsigned dat,unsigned cmd)
+void OLED_WR_Byte(uint8_t dat, uint8_t cmd)
 {
-	if(cmd)
-			{
-
-   Write_IIC_Data(dat);
-   
-		}
-	else {
-   Write_IIC_Command(dat);
-		
-	}
-
-
+    if(cmd) {
+        Write_IIC_Data(dat);
+    } else {
+        Write_IIC_Command(dat);	
+    }
 }
 
 
