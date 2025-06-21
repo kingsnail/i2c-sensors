@@ -31,9 +31,9 @@ void Write_Oled_Data(uint8_t Oled_Data)
 void OLED_WR_Byte(uint8_t dat, uint8_t cmd)
 {
     if(cmd) {
-        Write_IIC_Data(dat);
+        Write_Oled_Data(dat);
     } else {
-        Write_IIC_Command(dat);	
+        Write_Oled_Command(dat);	
     }
 }
 
@@ -76,7 +76,7 @@ void OLED_Display_Off(void) {
 }		   		
 
 void OLED_Clear(void)  {  
-	u8 i,n;		    
+	uint8_t i,n;		    
 	for(i=0;i<8;i++)  
 	{  
 		OLED_WR_Byte (0xb0+i,OLED_CMD);    //设置页地址（0~7）
@@ -90,7 +90,7 @@ void OLED_Clear(void)  {
 
 void OLED_On(void)  
 {  
-	u8 i,n;		    
+	uint8_t i,n;		    
 	for(i=0;i<8;i++)  
 	{  
 		OLED_WR_Byte (0xb0+i,OLED_CMD);    //设置页地址（0~7）
