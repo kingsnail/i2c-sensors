@@ -25,7 +25,7 @@ void processDisplay( void ) {
     OLED_ShowChar( 8, 20, ':', 8);
     OLED_ShowChar( 0, 30, 'Y', 8);
     OLED_ShowChar( 8, 30, ':', 8);
-
+    OLED_ShowNum(  16, 0, systemState, 2, 8);
 }
 
 void* display_thread_function(void* arg) {
