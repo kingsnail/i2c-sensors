@@ -13,8 +13,8 @@
 /*
  * Register Definitions
  */
-#define S0018_R_COMMAND         (0x80)
-#define S0018_R_DATA            (0x00)
+#define S0018_R_COMMAND         (0x00)
+#define S0018_R_DATA            (0x40)
 
 // Fundamental Commands
 #define S0018_R_CONTRAST        (0x81)
