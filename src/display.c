@@ -31,19 +31,19 @@ void processDisplay( void ) {
     } else {
        OLED_ShowChar( 16, 1, '+', 8); 
     }
-    OLED_ShowNum(  16, 1, (int)(Math.abs( pitch )), 4, 8);
+    OLED_ShowNum(  16, 1, abs( int(pitch) ), 4, 8);
     if ( roll < 0 ) {
        OLED_ShowChar( 16, 2, '-', 8); 
     } else {
        OLED_ShowChar( 16, 2, '+', 8); 
     }
-    OLED_ShowNum(  16, 2, (int)(Math.abs( roll )), 4, 8);
+    OLED_ShowNum(  16, 2, abs( (int)roll ), 4, 8);
     if ( yaw < 0 ) {
        OLED_ShowChar( 16, 3, '-', 8); 
     } else {
        OLED_ShowChar( 16, 3, '+', 8); 
     }
-    OLED_ShowNum(  16, 3, (int)(Math.abs( yaw )), 4, 8);
+    OLED_ShowNum(  16, 3, abs( (int)yaw ), 4, 8);
 }
 
 void* display_thread_function(void* arg) {
