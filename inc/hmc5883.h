@@ -2,7 +2,7 @@
 #define APPLICATION_USER_CORE_INC_HMC5883L_H_
 
 
-#define HMC5883L_ADDR      (0x1e << 1)
+#define HMC5883L_ADDR      (0x0D)
 
 // Register Definitions
 #define HMC5883L_REG_CRA   (0x00)  // Configuration Register A
