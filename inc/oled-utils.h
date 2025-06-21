@@ -1,6 +1,8 @@
 #ifndef APPLICATION_USER_CORE_INC_OLED_UTILS_H_
 #define APPLICATION_USER_CORE_INC_OLED_UTILS_H_
 
+#include <stdint.h>
+
 void fill_picture(uint8_t fill_Data);
 
 void OLED_Set_Pos(uint8_t x, uint8_t y);
