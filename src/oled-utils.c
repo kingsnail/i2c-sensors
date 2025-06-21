@@ -144,7 +144,11 @@ int oled_pow(uint8_t m, uint8_t n)
 void OLED_ShowNum(uint8_t x, uint8_t y, int num, uint8_t len, uint8_t size2)
 {         	
 	uint8_t t,temp;
-	uint8_t enshow=0;						   
+	uint8_t enshow=0;
+	uint8_t sz = 6;
+	if ( size2 == 16 ) {
+		sz = 12;
+	}
 	for(t=0;t<len;t++)
 	{
 		temp=(num/oled_pow(10,len-t-1))%10;
@@ -152,12 +156,12 @@ void OLED_ShowNum(uint8_t x, uint8_t y, int num, uint8_t len, uint8_t size2)
 		{
 			if(temp==0)
 			{
-				OLED_ShowChar(x+(size2/2)*t,y,' ',size2);
+				OLED_ShowChar(x+(sz)*t,y,' ',size2);
 				continue;
 			}else enshow=1; 
 		 	 
 		}
-	 	OLED_ShowChar(x+(size2/2)*t,y,temp+'0',size2); 
+	 	OLED_ShowChar(x+(sz)*t,y, temp+'0',size2); 
 	}
 } 
 
