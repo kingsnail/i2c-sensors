@@ -47,7 +47,11 @@ void* display_thread_function(void* arg) {
 			        break;
 			  
 		            case SYS_STATE_RUN:
-		                processDisplay();
+	  		    case SYS_STATE_CALIBRATE:
+			    case SYS_STATE_ORIENTATE:
+				if ( frameCounter % 50 == 0 ) {
+				    processDisplay();
+				}
 		                break;
 
     		        default:
