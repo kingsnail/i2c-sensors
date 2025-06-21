@@ -8,7 +8,7 @@
 
 #include "globals.h"
 #include "i2c-utils.h"
-#include "hmc5883.h"
+#include "qmc5883.h"
 #include "mpu6500.h"
 
 int calibrateCount = 0;
@@ -16,26 +16,8 @@ int orientateCount = 0;
 
 void initCompass( void ) {
     
-	uint8_t chipidA = readRegister(HMC5883L_ADDR, HMC5883L_REG_IR_A);
-	uint8_t chipidB = readRegister(HMC5883L_ADDR, HMC5883L_REG_IR_B);
-	uint8_t chipidC = readRegister(HMC5883L_ADDR, HMC5883L_REG_IR_C);
-	printf("HMC5883L ID=%2x%2x%2x\r\n", chipidA, chipidB, chipidC);
-
-	writeRegister(HMC5883L_ADDR,
-		      HMC5883L_REG_MR,
-	 	      HMC5883L_MR_HS_OFF | HMC5883L_MR_MODE_SINGLE_M
-	             );
-
-	uint8_t mode = readRegister(HMC5883L_ADDR, HMC5883L_REG_MR);
-	printf("Mode = %2x\r\n", mode);
-
-	writeRegister(HMC5883L_ADDR,
-	 	      HMC5883L_REG_MR,
-	 	      HMC5883L_MR_HS_OFF | HMC5883L_MR_MODE_CONT_M
-                     );
-
-	mode = readRegister(HMC5883L_ADDR, HMC5883L_REG_MR);
-	printf("Mode = %2x\r\n", mode);
+	uint8_t chipid = readRegister(QMC5883L_ADDR, QMC5883L_REG_CHIP_ID);
+	printf("QMC5883L ID=%2x\r\n", chipid);
 
 }
 
@@ -136,19 +118,19 @@ void orientateSensors( void ) {
 }
 
 void readCompass( void ) {
-    uint8_t dataXMSB = readRegister(HMC5883L_ADDR, HMC5883L_REG_X_MSB);
-    uint8_t dataXLSB = readRegister(HMC5883L_ADDR, HMC5883L_REG_X_LSB);
+    uint8_t dataXMSB = readRegister(QMC5883L_ADDR, QMC5883L_REG_X_MSB);
+    uint8_t dataXLSB = readRegister(QMC5883L_ADDR, QMC5883L_REG_X_LSB);
     compX            = (int16_t)(((uint16_t)dataXMSB << 8) | (uint16_t)dataXLSB);
 
-    uint8_t dataYMSB = readRegister(HMC5883L_ADDR, HMC5883L_REG_Y_MSB);
-    uint8_t dataYLSB = readRegister(HMC5883L_ADDR, HMC5883L_REG_Y_LSB);
+    uint8_t dataYMSB = readRegister(QMC5883L_ADDR, QMC5883L_REG_Y_MSB);
+    uint8_t dataYLSB = readRegister(QMC5883L_ADDR, QMC5883L_REG_Y_LSB);
     compX            = (int16_t)(((uint16_t)dataYMSB << 8) | (uint16_t)dataYLSB);
 
-    uint8_t dataZMSB = readRegister(HMC5883L_ADDR, HMC5883L_REG_Z_MSB);
-    uint8_t dataZLSB = readRegister(HMC5883L_ADDR, HMC5883L_REG_Z_LSB);
+    uint8_t dataZMSB = readRegister(QMC5883L_ADDR, QMC5883L_REG_Z_MSB);
+    uint8_t dataZLSB = readRegister(QMC5883L_ADDR, QMC5883L_REG_Z_LSB);
     compX            = (int16_t)(((uint16_t)dataZMSB << 8) | (uint16_t)dataZLSB);
 	
-    //printf("Compass = %2x%2x, %2x%2x, %2x%2x\n", dataXMSB, dataXLSB, dataYMSB, dataYLSB, dataZMSB, dataZLSB );
+    printf("Compass = %2x%2x, %2x%2x, %2x%2x\n", dataXMSB, dataXLSB, dataYMSB, dataYLSB, dataZMSB, dataZLSB );
 
 }
 
