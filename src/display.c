@@ -31,7 +31,7 @@ void processDisplay( void ) {
     } else {
        OLED_ShowChar( 16, 1, '+', 8); 
     }
-    OLED_ShowNum(  16, 1, abs( int(pitch) ), 4, 8);
+    OLED_ShowNum(  16, 1, abs( (int)pitch ), 4, 8);
     if ( roll < 0 ) {
        OLED_ShowChar( 16, 2, '-', 8); 
     } else {
