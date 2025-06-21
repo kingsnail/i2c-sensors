@@ -25,25 +25,25 @@ void processDisplay( void ) {
     OLED_ShowChar( 8, 2, ':', 8);
     OLED_ShowChar( 0, 3, 'Y', 8);
     OLED_ShowChar( 8, 3, ':', 8);
-    OLED_ShowNum(  16, 0, systemState, 2, 8);
+    OLED_ShowNum(  16, 0, systemState, 1, 8);
     if ( pitch < 0 ) {
        OLED_ShowChar( 16, 1, '-', 8); 
     } else {
        OLED_ShowChar( 16, 1, '+', 8); 
     }
-    OLED_ShowNum(  16, 1, abs( (int)pitch ), 4, 8);
+    OLED_ShowNum(  20, 1, abs( (int)pitch ), 3, 8);
     if ( roll < 0 ) {
        OLED_ShowChar( 16, 2, '-', 8); 
     } else {
        OLED_ShowChar( 16, 2, '+', 8); 
     }
-    OLED_ShowNum(  16, 2, abs( (int)roll ), 4, 8);
+    OLED_ShowNum(  20, 2, abs( (int)roll ), 3, 8);
     if ( yaw < 0 ) {
        OLED_ShowChar( 16, 3, '-', 8); 
     } else {
        OLED_ShowChar( 16, 3, '+', 8); 
     }
-    OLED_ShowNum(  16, 3, abs( (int)yaw ), 4, 8);
+    OLED_ShowNum(  20, 3, abs( (int)yaw ), 3, 8);
 }
 
 void* display_thread_function(void* arg) {
