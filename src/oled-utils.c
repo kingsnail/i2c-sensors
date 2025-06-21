@@ -1,7 +1,8 @@
 #include <stdint.h>
 #include "s0018.h"
 #include "stdlib.h"
-#include "oledfont.h"  	 
+#include "oledfont.h" 
+#include "i2c-utils.h"
 
 #define SIZE 8
 #define XLevelL		0x00
@@ -133,17 +134,17 @@ void OLED_ShowChar(uint8_t x, uint8_t y, uint8_t chr, uint8_t Char_Size)
 			}
 }
 
-u32 oled_pow(u8 m,u8 n)
+int oled_pow(uint8_t m, uint8_t n)
 {
-	u32 result=1;	 
+	int result=1;	 
 	while(n--)result*=m;    
 	return result;
 }				  
 
 void OLED_ShowNum(uint8_t x, uint8_t y, int num, uint8_t len, uint8_t size2)
 {         	
-	u8 t,temp;
-	u8 enshow=0;						   
+	uint8_t t,temp;
+	uint8_t enshow=0;						   
 	for(t=0;t<len;t++)
 	{
 		temp=(num/oled_pow(10,len-t-1))%10;
