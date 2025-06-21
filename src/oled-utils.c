@@ -1,8 +1,6 @@
 #include "s0018.h"
-#include "oled.h"
 #include "stdlib.h"
 #include "oledfont.h"  	 
-#include "delay.h"
 
 #define OLED_DATA ( 1 == 0 )
 #define OLED_CMD  ( 1 == 1 )
@@ -163,10 +161,10 @@ void OLED_ShowString(uint8_t x, uint8_t y, uint8_t *chr, uint8_t Char_Size)
 	}
 }
 
-void OLED_DrawBMP(unit8_t x0, unit8_t y0, unit8_t x1, unit8_t y1, unit8_t BMP[])
+void OLED_DrawBMP(uint8_t x0, uint8_t y0, uint8_t x1, uint8_t y1, uint8_t BMP[])
 { 	
- unit8_t j=0;
- unit8_t x,y;
+ uint8_t j=0;
+ uint8_t x,y;
   
   if(y1%8==0) y=y1/8;      
   else y=y1/8+1;
