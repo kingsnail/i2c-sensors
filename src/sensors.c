@@ -127,19 +127,25 @@ void orientateSensors( void ) {
 }
 
 void readCompass( void ) {
-    uint8_t dataXMSB = readRegister(QMC5883L_ADDR, QMC5883L_REG_X_MSB);
-    uint8_t dataXLSB = readRegister(QMC5883L_ADDR, QMC5883L_REG_X_LSB);
-    compX            = (int16_t)(((uint16_t)dataXMSB << 8) | (uint16_t)dataXLSB);
-
-    uint8_t dataYMSB = readRegister(QMC5883L_ADDR, QMC5883L_REG_Y_MSB);
-    uint8_t dataYLSB = readRegister(QMC5883L_ADDR, QMC5883L_REG_Y_LSB);
-    compX            = (int16_t)(((uint16_t)dataYMSB << 8) | (uint16_t)dataYLSB);
-
-    uint8_t dataZMSB = readRegister(QMC5883L_ADDR, QMC5883L_REG_Z_MSB);
-    uint8_t dataZLSB = readRegister(QMC5883L_ADDR, QMC5883L_REG_Z_LSB);
-    compX            = (int16_t)(((uint16_t)dataZMSB << 8) | (uint16_t)dataZLSB);
+    uint8_t buffer[6];
+    readRegisters(QMC5883L_ADDR, QMC5883L_REG_X_LSB, &buffer, 6 );
+    compX = (int16_t)(((uint16_t)buffer[1] << 8) | (uint16_t)buffer[0]);
+    compY = (int16_t)(((uint16_t)buffer[3] << 8) | (uint16_t)buffer[2]);
+    compZ = (int16_t)(((uint16_t)buffer[5] << 8) | (uint16_t)buffer[4]);
 	
-    printf("Compass = %2x%2x, %2x%2x, %2x%2x\n", dataXMSB, dataXLSB, dataYMSB, dataYLSB, dataZMSB, dataZLSB );
+    //uint8_t dataXMSB = readRegister(QMC5883L_ADDR, QMC5883L_REG_X_MSB);
+    //uint8_t dataXLSB = readRegister(QMC5883L_ADDR, QMC5883L_REG_X_LSB);
+    //compX            = (int16_t)(((uint16_t)dataXMSB << 8) | (uint16_t)dataXLSB);
+
+    //uint8_t dataYMSB = readRegister(QMC5883L_ADDR, QMC5883L_REG_Y_MSB);
+    //uint8_t dataYLSB = readRegister(QMC5883L_ADDR, QMC5883L_REG_Y_LSB);
+    //compX            = (int16_t)(((uint16_t)dataYMSB << 8) | (uint16_t)dataYLSB);
+
+    //uint8_t dataZMSB = readRegister(QMC5883L_ADDR, QMC5883L_REG_Z_MSB);
+    //uint8_t dataZLSB = readRegister(QMC5883L_ADDR, QMC5883L_REG_Z_LSB);
+    //compX            = (int16_t)(((uint16_t)dataZMSB << 8) | (uint16_t)dataZLSB);
+	
+    printf("Compass = %i, %i, %i\n", compX, compY, compZ );
 
 }
 
