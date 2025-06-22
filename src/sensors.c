@@ -128,6 +128,7 @@ void orientateSensors( void ) {
 
 void readCompass( void ) {
     uint8_t buffer[6];
+    printf("A:buffer=%x \n", &buffer[0]);
     readRegisters(QMC5883L_ADDR, QMC5883L_REG_X_LSB, buffer, 6 );
     compX = (int16_t)(((uint16_t)buffer[1] << 8) | (uint16_t)buffer[0]);
     compY = (int16_t)(((uint16_t)buffer[3] << 8) | (uint16_t)buffer[2]);
