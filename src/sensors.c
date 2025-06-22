@@ -21,7 +21,7 @@ void initCompass( void ) {
 
 	writeRegister(QMC5883L_ADDR,
 	 	      QMC5883L_REG_CONTROL_1,
-	 	      0x01
+	 	      QMC5883L_MODE_CONTINUOUS || QMC5883L_ODR_50HZ || QMC5883L_RNG_8G || QMC5883L_OSR_128
                      );
 }
 
