@@ -23,6 +23,11 @@ void initCompass( void ) {
 	 	      QMC5883L_REG_CONTROL_1,
 	 	      QMC5883L_MODE_CONTINUOUS || QMC5883L_ODR_50HZ || QMC5883L_RNG_8G || QMC5883L_OSR_128
                      );
+
+	writeRegister(QMC5883L_ADDR,
+	 	      QMC5883L_REG_CONTROL_1,
+  	              QMC5883L_INT_ENABLE || 0x 02
+		     );
 }
 
 void initIMU( void ) {
