@@ -11,6 +11,7 @@
 #include <stdint.h>
 
 uint8_t readRegister( uint8_t addr, uint8_t reg );
+void    readRegisters(uint8_t addr, uint8_t reg, uint8_t * buf, uint8_t len);
 
 uint8_t writeRegister( uint8_t addr, uint8_t reg, uint8_t val );
 
