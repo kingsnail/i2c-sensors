@@ -67,7 +67,37 @@ uint8_t readRegister(uint8_t addr, uint8_t reg) {
     return data;
 }
 
+/*****************************************************
+ * readRegisters - reads a number of byte values     *
+ * from the specified address and register           *
+ * combination                                       *
+ *****************************************************/
+readRegisters(uint8_t addr, uint8_t reg, uint8_t * buf, uint8_t len) {
+    pthread_mutex_lock(&i2cBusLock);
+    uint8_t data = 0;
+    if (device_open != 1) openI2C();
 
+    if (ioctl(fd, I2C_SLAVE, addr) < 0) {
+        perror("Failed to set I2C address");
+        pthread_mutex_unlock(&i2cBusLock);
+        return 0;
+    }
+
+    if (write(fd, &reg, 1) != 1) {
+        perror("Failed to write register address");
+        pthread_mutex_unlock(&i2cBusLock);
+        return 0;
+    }
+
+    // Read len registers...
+    if (read(fd, buf, len) != len) {
+            perror("Failed to read registers %2x length %2x into %8x\n", reg, len, buf);
+            pthread_mutex_unlock(&i2cBusLock);
+            return 0;
+        } 
+    pthread_mutex_unlock(&i2cBusLock);
+    printf("read %02x%02x%02x%02x%02x%02x\n", buff[0], buff[1], buff[2], buff[3], buff[4], buff[5]);
+}
 
 /******************************************************
  * writeRegister - writess a single byte value to the *
