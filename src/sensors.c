@@ -26,7 +26,7 @@ void initCompass( void ) {
 
 	writeRegister(QMC5883L_ADDR,
 	 	      QMC5883L_REG_SR_PERIOD,
-  	              QMC5883L_INT_ENABLE || 0x 02
+  	              QMC5883L_INT_ENABLE || 0x02
 		     );
 }
 
@@ -128,7 +128,7 @@ void orientateSensors( void ) {
 
 void readCompass( void ) {
     uint8_t buffer[6];
-    readRegisters(QMC5883L_ADDR, QMC5883L_REG_X_LSB, &buffer, 6 );
+    readRegisters(QMC5883L_ADDR, QMC5883L_REG_X_LSB, buffer, 6 );
     compX = (int16_t)(((uint16_t)buffer[1] << 8) | (uint16_t)buffer[0]);
     compY = (int16_t)(((uint16_t)buffer[3] << 8) | (uint16_t)buffer[2]);
     compZ = (int16_t)(((uint16_t)buffer[5] << 8) | (uint16_t)buffer[4]);
