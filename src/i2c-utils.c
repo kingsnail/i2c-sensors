@@ -73,8 +73,8 @@ uint8_t readRegister(uint8_t addr, uint8_t reg) {
  * combination                                       *
  *****************************************************/
 void readRegisters(uint8_t addr, uint8_t reg, uint8_t * buf, uint8_t len) {
+    printf("B: buffer = %x\n", buf);
     pthread_mutex_lock(&i2cBusLock);
-    uint8_t data = 0;
     if (device_open != 1) openI2C();
 
     if (ioctl(fd, I2C_SLAVE, addr) < 0) {
@@ -97,7 +97,7 @@ void readRegisters(uint8_t addr, uint8_t reg, uint8_t * buf, uint8_t len) {
             return;
         } 
     pthread_mutex_unlock(&i2cBusLock);
-    printf("read %02x%02x%02x%02x%02x%02x\n", buff[0], buff[1], buff[2], buff[3], buff[4], buff[5]);
+    printf("read %02x%02x%02x%02x%02x%02x\n", buf[0], buf[1], buf[2], buf[3], buf[4], buf[5]);
 }
 
 /******************************************************
