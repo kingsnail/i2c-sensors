@@ -36,7 +36,14 @@
 
 #define QMC5883L_REG_CONTROL_2 (0x0A)
 
-#define QMC5883L_REG_SR_PERIOD (0x0B)
+#define QMC5883L_REG_SR_PERIOD     (0x0B)
+#define   QMC5883L_INT_ENABLE      (0x01)
+#define   QMC5883L_INT_DISABLE     (0x00)
+#define   QMC5883L_ROL_ENABLE      (0x40)
+#define   QMC5883L_ROL_DISABLE     (0x00)
+#define   QMC5883L_SOFT_RESET_ON   (0x80)
+#define   QMC5883L_SOFT_RESET_OFF  (0x00)
+
 
 #define QMC5883L_REG_CHIP_ID   (0x0D)
 
