@@ -130,6 +130,8 @@ void readCompass( void ) {
     uint8_t buffer[6];
     printf("A:buffer=%x \n", &buffer[0]);
     readRegisters(QMC5883L_ADDR, QMC5883L_REG_X_LSB, buffer, 6 );
+    printf("C:buffer=%02x%02x%02x%02x%02x%02x\n", buffer[0], buffer[1], buffer[2], buffer[3], buffer[4], buffer[5]);
+	
     compX = (int16_t)(((uint16_t)buffer[1] << 8) | (uint16_t)buffer[0]);
     compY = (int16_t)(((uint16_t)buffer[3] << 8) | (uint16_t)buffer[2]);
     compZ = (int16_t)(((uint16_t)buffer[5] << 8) | (uint16_t)buffer[4]);
