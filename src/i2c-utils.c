@@ -91,7 +91,8 @@ void readRegisters(uint8_t addr, uint8_t reg, uint8_t * buf, uint8_t len) {
 
     // Read len registers...
     if (read(fd, buf, len) != len) {
-            perror("Failed to read registers %2x length %2x into %8x\n", reg, len, buf);
+            printf("Failed to read registers %2x length %2x into %8x\n", reg, len, buf);
+            perror("readRegisters failed.");
             pthread_mutex_unlock(&i2cBusLock);
             return;
         } 
