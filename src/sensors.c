@@ -25,7 +25,7 @@ void initCompass( void ) {
                      );
 
 	writeRegister(QMC5883L_ADDR,
-	 	      QMC5883L_REG_CONTROL_1,
+	 	      QMC5883L_REG_SR_PERIOD,
   	              QMC5883L_INT_ENABLE || 0x 02
 		     );
 }
