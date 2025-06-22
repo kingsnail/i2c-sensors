@@ -72,7 +72,7 @@ uint8_t readRegister(uint8_t addr, uint8_t reg) {
  * from the specified address and register           *
  * combination                                       *
  *****************************************************/
-readRegisters(uint8_t addr, uint8_t reg, uint8_t * buf, uint8_t len) {
+void readRegisters(uint8_t addr, uint8_t reg, uint8_t * buf, uint8_t len) {
     pthread_mutex_lock(&i2cBusLock);
     uint8_t data = 0;
     if (device_open != 1) openI2C();
