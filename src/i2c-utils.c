@@ -75,7 +75,7 @@ uint8_t readRegister(uint8_t addr, uint8_t reg) {
  * combination                                       *
  *****************************************************/
 void readRegisters(uint8_t addr, uint8_t reg, uint8_t * buf, uint8_t len) {
-    printf("B: buffer = %x\n", buf);
+    //printf("B: buffer = %x\n", buf);
     pthread_mutex_lock(&i2cBusLock);
     if (device_open != 1) openI2C();
 
