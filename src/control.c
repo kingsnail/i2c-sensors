@@ -28,7 +28,9 @@ void calculateAngles( void ) {
 }
 
 void processFrame( void ) {
-    printf("AHRS: M:%i P:%03f\t R:%03f\t Y:%03f\r\n", systemState, pitch, roll, yaw);
+    if ( showAHRS == 1 ) {
+        printf("AHRS: M:%i P:%03f\t R:%03f\t Y:%03f\r\n", systemState, pitch, roll, yaw);
+    }
     //printf("q0:%f q1:%f q2:%f q3:%f\n", q0, q1, q2, q3 );
     executeFilter();
     calculateAngles();
