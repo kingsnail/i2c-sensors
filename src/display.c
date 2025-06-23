@@ -67,7 +67,7 @@ void* display_thread_function(void* arg) {
 		            case SYS_STATE_RUN:
 	  		    case SYS_STATE_CALIB:
 			    case SYS_STATE_ORIENT:
-				if ( frameCounter % 50 == 0 ) {
+				if ( frameCounter % 20 == 0 ) {
 				    processDisplay();
 				}
 		                break;
