@@ -113,6 +113,9 @@ void orientateSensors( void ) {
 
     if ( orientateCount == 0 ) {
         printf("Orientating...\r\n");
+	pitchOffset = 0;
+	rollOffset  = 0;
+	yawOffset   = 0;
     }
 
     if ( orientateCount >= ORIENTATE_FRAMES ) {
@@ -213,6 +216,9 @@ void* sensor_thread_function(void* arg) {
                         initDone       = 1; 
 			calibrateCount = 0;
 			orientateCount = 0;
+			pitchOffset = 0;
+	                rollOffset  = 0;
+	                yawOffset   = 0;
 		    }
 		    break;
                 
