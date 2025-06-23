@@ -44,6 +44,7 @@ void* control_thread_function(void* arg) {
     int waitCount        = 0;
     systemState          = SYS_STATE_READY; 
     initDone             = 0;
+    initDisplayDone      = 0;
 	
     while(1) {
         if ( frameCounter != lastFrameCounter ) {
