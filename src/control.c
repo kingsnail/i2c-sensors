@@ -8,7 +8,8 @@
 #include "MadgwickAHRS.h"
 
 void executeFilter( void ) {
-    MadgwickAHRSupdateIMU(sGyroX, sGyroY, sGyroZ, sAccX, sAccY, sAccZ);
+    //MadgwickAHRSupdateIMU(sGyroX, sGyroY, sGyroZ, sAccX, sAccY, sAccZ);
+    MadgwickAHRSupdate(sGyroX, sGyroY, sGyroZ, sAccX, sAccY, sAccZ, sCompX, sCompY, sCompZ);
 }
 
 void calculateAngles( void ) {
