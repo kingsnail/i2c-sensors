@@ -10,8 +10,12 @@ volatile int calibDone    = 0;
 volatile int orientDone   = 0;
 
 // Runtime Options 
+int showCompass = 0;
+int showI2C     = 0;
+int showTiming  = 0;
+int showAHRS    = 0;
 
-
+// Sensor values
 volatile int16_t  accX    = 0;
 volatile int16_t  accY    = 0;
 volatile int16_t  accZ    = 0;
