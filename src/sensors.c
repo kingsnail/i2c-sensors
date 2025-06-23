@@ -123,7 +123,7 @@ void orientateSensors( void ) {
 	pitchOffset = -pitch;
 	rollOffset  = -roll;
 	yawOffset   = -yaw;
-	    
+	printf("Orient: %i, %i, %i \n", (int)pitch, (int)roll,  (int)yaw );
 	orientDone = 1;
     }
     orientateCount++;
