@@ -6,6 +6,7 @@ pthread_mutex_t i2cBusLock = PTHREAD_MUTEX_INITIALIZER;
 volatile int systemState  = 0;
 volatile int frameCounter = 0;
 volatile int initDone     = 0;
+volatile int dispInitDone = 0;
 volatile int calibDone    = 0;
 volatile int orientDone   = 0;
 
