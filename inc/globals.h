@@ -28,6 +28,9 @@ extern pthread_mutex_t i2cBusLock;
 #define ORIENTATE_FRAMES   ( 200 )
 #define ERROR_WAIT_FRAMES  ( 20 )
 
+#define MAX(x, y) (((x) > (y)) ? (x) : (y))
+#define MIN(x, y) (((x) < (y)) ? (x) : (y))
+
 extern volatile int systemState;
 
 extern volatile int frameCounter;
