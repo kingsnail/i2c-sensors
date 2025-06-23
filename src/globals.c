@@ -9,6 +9,9 @@ volatile int initDone     = 0;
 volatile int calibDone    = 0;
 volatile int orientDone   = 0;
 
+// Runtime Options 
+
+
 volatile int16_t  accX    = 0;
 volatile int16_t  accY    = 0;
 volatile int16_t  accZ    = 0;
