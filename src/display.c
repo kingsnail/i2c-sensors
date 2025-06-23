@@ -76,7 +76,7 @@ void* display_thread_function(void* arg) {
 		                // Do nothing
 		        }
             clock_gettime(CLOCK_MONOTONIC, &end);
-            displayFrameTimeMs = ((double)(end.tv_sec - start.tv_sec) + (double)(end.tv_nsec - start.tv_nsec) / 1e9) * 1e3;
+            displayFrameTimeMs = MAX( displayFrameTimeMs, ((double)(end.tv_sec - start.tv_sec) + (double)(end.tv_nsec - start.tv_nsec) / 1e9) * 1e3);
         }
     }
     return NULL;
