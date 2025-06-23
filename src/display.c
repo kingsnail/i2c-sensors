@@ -62,7 +62,7 @@ void* display_thread_function(void* arg) {
 
 			    case SYS_STATE_INIT: 
 			        initDisplay();
-				initDisplayDone = 1;
+				dispInitDone = 1;
 			        break;
 			  
 		            case SYS_STATE_RUN:
