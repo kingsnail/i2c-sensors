@@ -30,7 +30,9 @@ int openI2C( void ) {
         printf("Could not open I2C device...");
         return 1;
     }
-    printf("I2C device open.\r\n");
+    if ( showI2C == 1 ) {
+        printf("I2C device open.\r\n");
+    }
     device_open = 1;
     return 0;
 }
@@ -97,7 +99,9 @@ void readRegisters(uint8_t addr, uint8_t reg, uint8_t * buf, uint8_t len) {
             return;
         } 
     pthread_mutex_unlock(&i2cBusLock);
-    printf("read %02x%02x%02x%02x%02x%02x\n", buf[0], buf[1], buf[2], buf[3], buf[4], buf[5]);
+    if ( showI2C == 1 ) {
+        printf("read %02x%02x%02x%02x%02x%02x\n", buf[0], buf[1], buf[2], buf[3], buf[4], buf[5]);
+    }
 }
 
 /******************************************************
@@ -107,7 +111,9 @@ void readRegisters(uint8_t addr, uint8_t reg, uint8_t * buf, uint8_t len) {
 uint8_t writeRegister( uint8_t addr, uint8_t reg, uint8_t val ){
 
     pthread_mutex_lock(&i2cBusLock);
-    //printf("writeRegister(%02x, %02x, %02x)\n", addr, reg, val);
+    if ( showI2C == 1 ) {
+        printf("writeRegister(%02x, %02x, %02x)\n", addr, reg, val);
+    }
     if ( device_open != 1 ) {
         openI2C();
     }
