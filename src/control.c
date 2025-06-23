@@ -44,7 +44,7 @@ void* control_thread_function(void* arg) {
     int waitCount        = 0;
     systemState          = SYS_STATE_READY; 
     initDone             = 0;
-    initDisplayDone      = 0;
+    dispInitDone         = 0;
 	
     while(1) {
         if ( frameCounter != lastFrameCounter ) {
@@ -80,7 +80,7 @@ void* control_thread_function(void* arg) {
 		    break;
 		    
 		case SYS_STATE_INIT:
-		    if (( initDone == 1 ) && ( initDisplayDone == 1)) {
+		    if (( initDone == 1 ) && ( dispInitDone == 1)) {
 		        systemState = SYS_STATE_CALIB;
 		        sensorFrameTimeMs  = 0.0;
                         controlFrameTimeMs = 0.0;
