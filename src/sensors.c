@@ -118,7 +118,7 @@ void orientateSensors( void ) {
 	yawOffset   = 0;
     }
 
-    if ( orientateCount >= ORIENTATE_FRAMES ) {
+    if ( (orientateCount >= ORIENTATE_FRAMES) && ( orientDone != 1 ) ) {
 	// Define the attitude offsets
 	pitchOffset = -pitch;
 	rollOffset  = -roll;
