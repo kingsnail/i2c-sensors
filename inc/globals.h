@@ -35,6 +35,11 @@ extern volatile int initDone;
 extern volatile int calibDone;
 extern volatile int orientDone;
 
+extern int showCompass;
+extern int showI2C;
+extern int showTiming;
+extern int showAHRS;
+
 extern volatile int16_t  compX;
 extern volatile int16_t  compY;
 extern volatile int16_t  compZ;
