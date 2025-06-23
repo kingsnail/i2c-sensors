@@ -12,7 +12,31 @@
 #include "sensors.h"
 #include "display.h"
 
-int main() {
+int main(int argc, char *argv[]) {
+    // Configure the runtime options.
+    int opt;
+    showCompass = 0;
+    showI2C     = 0;
+    showTiming  = 0;
+    showAHRS    = 0;
+    
+    while ((opt = getopt(argc, argv, "CITA")) != -1) {
+        switch (opt) {
+            case 'C':
+                showCompass = 1;
+                break;
+            case 'I':
+                showI2C = 1;
+                break;
+            case 'T':
+                showTiming = 1;
+                break;
+            case 'A':
+                showAHRS = 1;
+                break;
+        }
+    }
+    // Create the required threads...
     pthread_t timer_thread;
     int       timer_thread_id;
     pthread_t sensor_thread;
