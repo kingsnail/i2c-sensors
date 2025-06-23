@@ -139,7 +139,11 @@ void readCompass( void ) {
     compX = (int16_t)(((uint16_t)buffer[1] << 8) | (uint16_t)buffer[0]);
     compY = (int16_t)(((uint16_t)buffer[3] << 8) | (uint16_t)buffer[2]);
     compZ = (int16_t)(((uint16_t)buffer[5] << 8) | (uint16_t)buffer[4]);
-	
+
+    sCompX = compX / 3000.0f;
+    sCompY = compY / 3000.0f;
+    sCompZ = compZ / 3000.0f;
+
     //uint8_t dataXMSB = readRegister(QMC5883L_ADDR, QMC5883L_REG_X_MSB);
     //uint8_t dataXLSB = readRegister(QMC5883L_ADDR, QMC5883L_REG_X_LSB);
     //compX            = (int16_t)(((uint16_t)dataXMSB << 8) | (uint16_t)dataXLSB);
