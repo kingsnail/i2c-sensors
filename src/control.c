@@ -81,6 +81,9 @@ void* control_thread_function(void* arg) {
 		case SYS_STATE_INIT:
 		    if ( initDone == 1 ) {
 		        systemState = SYS_STATE_CALIB;
+		        sensorFrameTimeMs  = 0.0;
+                        controlFrameTimeMs = 0.0;
+                        displayFrameTimeMs = 0.0;
 		    }
                     break;
 
