@@ -16,7 +16,7 @@ void* timer_thread_function(void* arg) {
     double frameTimeMs = 0.0;
     while(1) {
 	clock_gettime(CLOCK_MONOTONIC, &start);
-	if ( frameCounter % 100 == 0 ) {
+	if ( (frameCounter % 10 == 0) && (showTiming == 1) ) {
 	    printf("C:%0.3fms S:%0.3fms D:%0.3fms F: %0.3fms\n", controlFrameTimeMs, sensorFrameTimeMs, displayFrameTimeMs, frameTimeMs);
 	}
 	    
