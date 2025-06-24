@@ -77,6 +77,9 @@ void* control_thread_function(void* arg) {
 		    processFrame();
                     if ( orientDone == 1 ) {
 			systemState = SYS_STATE_RUN;
+		        sensorFrameTimeMs  = 0.0;
+                        controlFrameTimeMs = 0.0;
+                        displayFrameTimeMs = 0.0;
 		    break;
 		    
 		case SYS_STATE_INIT:
