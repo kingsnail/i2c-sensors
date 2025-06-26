@@ -80,6 +80,7 @@ void* control_thread_function(void* arg) {
 		        sensorFrameTimeMs  = 0.0;
                         controlFrameTimeMs = 0.0;
                         displayFrameTimeMs = 0.0;
+		    }
 		    break;
 		    
 		case SYS_STATE_INIT:
@@ -100,7 +101,7 @@ void* control_thread_function(void* arg) {
 
 		default:
 		    systemState = SYS_STATE_ERROR;
-		}
+	    }
             clock_gettime(CLOCK_MONOTONIC, &end);
             controlFrameTimeMs = MAX( controlFrameTimeMs, ((double)(end.tv_sec - start.tv_sec) + (double)(end.tv_nsec - start.tv_nsec) / 1e9) * 1e3);
             }
