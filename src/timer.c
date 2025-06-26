@@ -14,8 +14,8 @@ void* timer_thread_function(void* arg) {
 
     struct timespec start, end;
     double frameTimeMs = 0.0;
+    clock_gettime(CLOCK_MONOTONIC, &start);
     while(1) {
-	clock_gettime(CLOCK_MONOTONIC, &start);
 	if ( (frameCounter % 10 == 0) && (showTiming == 1) ) {
 	    printf("C:%0.3fms S:%0.3fms D:%0.3fms F: %0.3fms\n", controlFrameTimeMs, sensorFrameTimeMs, displayFrameTimeMs, frameTimeMs);
 	}
@@ -33,6 +33,7 @@ void* timer_thread_function(void* arg) {
         nanosleep(&ts, NULL);
 	clock_gettime(CLOCK_MONOTONIC, &end);
         frameTimeMs = MAX(frameTimeMs, ((double)(end.tv_sec - start.tv_sec) + (double)(end.tv_nsec - start.tv_nsec) / 1e9) * 1e3);
+	clock_gettime(CLOCK_MONOTONIC, &start);
     }
     return NULL;
 }
